@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+  <style>
+    .buyers-container{position: fixed;top:.66rem;left:.4rem;color: #fff; height:34px;overflow: hidden;z-index: 99999999;}
+    .buyers-item { display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex; align-items: center;padding:0 6px;
+      height:34px;line-height:34px;-webkit-border-radius:16px;border-radius:16px;background: rgba(0,0,0,.6); opacity: 0;}
+    .buyers-in {-webkit-animation: 1s show linear;animation: 1s show linear;opacity: 1;}
+    .buyers-out {-webkit-animation: 1s hide linear;animation: 1s hide linear;}
+    .buyers-show {-webkit-animation: 1s show linear;animation: 1s show linear;opacity: 1;}
+    .buyers-item p {/*max-width:300px;*/overflow: hidden;text-overflow: ellipsis;white-space: nowrap; font-size:12px;}
+    .buyers-img {width:28px;height:28px;-webkit-border-radius:50%;border-radius:50%;margin-right:10px;margin-left:1px;}
+    @-webkit-keyframes show {
+      0% {opacity:0}
+      to {opacity: 1}
+    }
+    @keyframes show {
+      0% {opacity:0}
+      to {opacity: 1}
+    }
+    @-webkit-keyframes hide {
+      0% {opacity:1}
+      to {opacity: 0}
+    }
+    @keyframes hide {
+      0% {opacity:1}
+      to {opacity: 0}
+    }
+  </style>
+
+</head>
+<body>
+
+<!-- 网页订单弹幕效果 -->
+<div class="buyers-container" id="buyers-container"></div>
+
+
+<script>
+    window.addEventListener("load",function () {
+      setTimeout(function () {
+
+        let box = document.getElementById("buyers-container")
+        fetch("./user-avatar/user-data.json")
+           .then(response => response.json())
+           .then(dataItems => {
+             for (let i = 0; i < dataItems.length; i++) {
+               let userdata = dataItems[i];
+               /*console.log(userdata)*/
+
+               let buyersItem = document.createElement("div");
+               buyersItem.className = "buyers-item";
+               buyersItem.id = "buyers-item" + i;
+               /*console.log(buyersItem)*/
+               buyersItem.innerHTML = `
+                       <img src="${userdata.userAvatar}" alt="" width="20" height="20" class="buyers-img">
+                       <p>${userdata.buyInformation}</p>`;
+               box.appendChild(buyersItem);
+             }
+
+             let numTime;
+             let timeLists = document.querySelectorAll('.time')
+             for (let k = 0; k < timeLists.length; k++) {
+               numTime = Math.floor(Math.random()*(30+k));
+               if(numTime === 0) numTime = 1;
+               let time = timeLists[k];
+               time.innerHTML = numTime;
+             }
+
+             let data = document.getElementById("buyers-container").getElementsByTagName('div');
+             let nums = data.length;
+             //alert(nums);
+             function step() {
+               timer = setTimeout(div_show, 2000)
+             }
+             function nextDiv(currentBuyer) {
+               cur_div = document.getElementById("buyers-item"+currentBuyer+"");
+               //next_div=document.getElementById("buyers-item"+(currentBuyer+1)+"");
+               div_show(cur_div);
+               cur_div.style.transform = "translateY(-" + 34 * (currentBuyer) + "px)";
+             }
+
+             function div_show(div) {
+               setTimeout(function(){div.className="buyers-item buyers-in";div.className="buyers-item buyers-show";},200);
+               setTimeout(function(){div.className="buyers-item buyers-out";},3000);
+             }
+             /*nextDiv(4)*/
+             var currentBuyer=0;
+             function xianshi(){
+               nextDiv(currentBuyer);
+               currentBuyer++;
+               if(currentBuyer>nums-1){
+                 currentBuyer=0;
+               }
+               if(currentBuyer < nums){
+                 setTimeout(function(){
+                   xianshi();
+                 },6000);
+               }
+             }
+             xianshi();
+
+             // 产品名称
+             let productName = document.getElementsByClassName("product_name");
+             for (let i = 0; i < productName.length; i++) {
+               productName[i].innerText = "黄精海参肽";
+             }
+
+           });
+      },5000);
+    });
+</script>
+
+
+</body>
+</html>
