@@ -13,22 +13,23 @@ window.onload = () => {
     let randomVideoURL = getRandomVideos()
 
     const config = {
-        "id": "mse",
-        "playsinline": true,
-        /*"poster": "//lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/byted-player-videos/1.0.0/poster.jpg",*/
-        "plugins": [],
-        "url": randomVideoURL,
-        "pip": true,
-        "autoplay": true,
-        "width": 500,
-        "fluid": true,
-        "lang": "zh",
+        "id": "mse", // 选择器 id 播放器实例化的时候需要明确DOM的占位，video将挂载到该DOM下，播放器的尺寸与占位DOM一致，id为容器DOM的id
+        "playsinline": true, // 是否启用内联播放模式
+        /*"poster": "//lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/byted-player-videos/1.0.0/poster.jpg",*/ // 视频封面
+        "plugins": [], // 插件配置
+        "url": randomVideoURL, // 视频源 url
+        "pip": true, // 是否开启画中画
+        "autoplay": true, // 是否自动播放
+        "width": 500, // 播放器宽度
+        "fluid": true, // 是否启用流式布局
+        "lang": "zh", // 语言
         "controls": {
-            "mode": "flex"
+            "mode": "flex", // 控制栏模式，normal || flex || bottom
         },
         "dynamicBg": {
-            "disable": false
-        }
+            "disable": false, // 动态背景高斯模糊渲染插件
+        },
+        "ignores": ["cssfullscreen"], // 禁用插件
     }
 
     let player = new Player(config)
