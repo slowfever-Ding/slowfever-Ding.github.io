@@ -18,9 +18,17 @@ window.onload = () => {
         /*"poster": "//lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/byted-player-videos/1.0.0/poster.jpg",*/
         "plugins": [],
         "url": randomVideoURL,
+        "pip": true,
         "autoplay": true,
-        "width": "500",
-        "fluid": true
+        "width": 500,
+        "fluid": true,
+        "lang": "zh",
+        "controls": {
+            "mode": "flex"
+        },
+        "dynamicBg": {
+            "disable": false
+        }
     }
 
     let player = new Player(config)
@@ -56,5 +64,4 @@ window.onload = () => {
                 console.log(error)
             })
     */
-
 }
