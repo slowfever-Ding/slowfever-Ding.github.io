@@ -69,7 +69,7 @@
 
         init() {
             this.getDataLists().then(res => {
-                /*console.log(res) // 打印返回响应结果*/
+                console.log(res) // 打印返回响应结果
                 this.DataLists = res
                 this.rendering()
                 this.paging()
@@ -89,20 +89,31 @@
             this.getDataLists().then(res => {
                 /*console.log(res.pagination) // 测试是否有分页数据*/
 
-                $(() => {
+                if (res.scenes.length !== 0) {
+                    $(() => {
+                        $("#pagingBox").bs_pagination({
+                            currentPage: res.pagination.current_page, // 初始页码
+                            totalPages: res.pagination.last_page, // 总页数
+                            rowsPerPage: res.pagination.per_page, // 每页行数
+                            maxRowsPerPage: res.pagination.per_page, // 每页最大行数
+                            totalRows: res.pagination.total, // 总数据
+                            onChangePage: (page_num,rows_per_page) =>{ // returns page_num and rows_per_page after a link has clicked
+                                console.log(page_num,rows_per_page.currentPage)
+                                this.page = rows_per_page.currentPage
+                                this.init()
+                            }
+                        });
+                    })
+                }else {
+                    console.log("没有数据")
                     $("#pagingBox").bs_pagination({
-                        currentPage: res.pagination.current_page, // 初始页码
-                        totalPages: res.pagination.last_page, // 总页数
-                        rowsPerPage: res.pagination.per_page, // 每页行数
-                        maxRowsPerPage: res.pagination.per_page, // 每页最大行数
-                        totalRows: res.pagination.total, // 总数据
-                        onChangePage: (page_num,rows_per_page) =>{ // returns page_num and rows_per_page after a link has clicked
-                            console.log(page_num,rows_per_page.currentPage)
-                            this.page = rows_per_page.currentPage
-                            this.init()
-                        }
+                        currentPage: 0, // 初始页码
+                        totalPages: 1, // 总页数
+                        rowsPerPage: 0, // 每页行数
+                        maxRowsPerPage: 0, // 每页最大行数
+                        totalRows: 0, // 总数据
                     });
-                })
+                }
 
             })
         }
@@ -137,7 +148,13 @@
     let test01 = new HandlingDataConstructors("dataLists");
 
     btn.addEventListener('click',function () {
-        test01.search = search.value
+
+        if (search.value === '') {
+            test01.search = 'milf'
+        } else {
+            test01.search = search.value
+        }
+
         test01.init()
     })
 
