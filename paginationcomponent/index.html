@@ -95,10 +95,10 @@
                             currentPage: res.pagination.current_page, // 初始页码
                             totalPages: res.pagination.last_page, // 总页数
                             rowsPerPage: res.pagination.per_page, // 每页行数
-                            maxRowsPerPage: res.pagination.per_page, // 每页最大行数
+                            maxRowsPerPage: 20, // 每页最大行数
                             totalRows: res.pagination.total, // 总数据
                             onChangePage: (page_num,rows_per_page) =>{ // returns page_num and rows_per_page after a link has clicked
-                                console.log(page_num,rows_per_page.currentPage)
+                                /*console.log(page_num,rows_per_page.currentPage)*/
                                 this.page = rows_per_page.currentPage
                                 this.init()
                             }
