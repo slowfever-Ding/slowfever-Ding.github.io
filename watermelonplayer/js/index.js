@@ -33,7 +33,7 @@ window.onload = () => {
     }
 
     let player = new Player(config)
-    console.log(player)
+    /*console.log(player)*/
 
     next.addEventListener('click',() => {
         player.playNext({
