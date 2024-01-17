@@ -213,3 +213,87 @@ footer, header, hgroup, menu, nav, section {
 .search__icon path {
     fill: white;
 }
+
+.skeleton-img {
+    opacity: 0.7;
+    -webkit-animation: skeleton-img-loading 1s linear infinite alternate;
+    -moz-animation: skeleton-img-loading 1s linear infinite alternate;
+    -o-animation: skeleton-img-loading 1s linear infinite alternate;
+    animation: skeleton-img-loading 1s linear infinite alternate;
+}
+
+@-webkit-keyframes skeleton-text-loading {
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+@-moz-keyframes skeleton-text-loading {
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+@-o-keyframes skeleton-text-loading {
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+@keyframes skeleton-text-loading {
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+@-webkit-keyframes skeleton-img-loading {
+    0% {
+        background-color: hsl(200, 20%, 70%);
+    }
+
+    100% {
+        background-color: hsl(200, 20%, 95%);
+    }
+}
+
+@-moz-keyframes skeleton-img-loading {
+    0% {
+        background-color: hsl(200, 20%, 70%);
+    }
+
+    100% {
+        background-color: hsl(200, 20%, 95%);
+    }
+}
+
+@-o-keyframes skeleton-img-loading {
+    0% {
+        background-color: hsl(200, 20%, 70%);
+    }
+
+    100% {
+        background-color: hsl(200, 20%, 95%);
+    }
+}
+
+@keyframes skeleton-img-loading {
+    0% {
+        background-color: hsl(200, 20%, 70%);
+    }
+
+    100% {
+        background-color: hsl(200, 20%, 95%);
+    }
+}

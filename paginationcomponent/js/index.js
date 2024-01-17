@@ -39,7 +39,7 @@ class HandlingDataConstructors {
     rendering(){
         /*console.log(this.DataLists) // 测试是否有数据*/
         let myTest = this.DataLists.scenes.map(item => {
-            return `<li><a href="${item.url}" target="_blank"><img class="items" src="${item.preview}" width="150" height="150" title="${item.title}" alt="${item.title}"/></a></li>`;
+            return `<li><a href="${item.url}" target="_blank"><img class="items skeleton-img" src="${item.preview}" width="150" height="150" title="${item.title}" alt="${item.title}"/></a></li>`;
             // return `<li><a href="${item.url}" target="_blank"><img class="items" src="${this.testUrl}" width="150" height="150" title="${item.title}" alt="${item.title}"/></a></li>`;
         });
         this.ul.classList.add("dataLists")
