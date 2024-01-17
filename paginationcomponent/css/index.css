@@ -61,7 +61,7 @@ footer, header, hgroup, menu, nav, section {
     -moz-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    padding: 15px 0;
+    padding-bottom: 15px;
 }
 
 .dataLists {
