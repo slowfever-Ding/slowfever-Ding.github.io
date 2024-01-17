@@ -22,10 +22,17 @@ class HandlingDataConstructors {
 
     init() {
         this.getDataLists().then(res => {
-            /*console.log(res) // 打印返回响应结果*/
-            this.DataLists = res
-            this.rendering()
-            this.paging()
+            console.log(res) // 打印返回响应结果
+
+            if (res.scenes.length === 0) {
+                alert('没有找到数据')
+                this.paging()
+            } else {
+                this.DataLists = res
+                this.rendering()
+                this.paging()
+            }
+
         })
     }
 
@@ -35,7 +42,7 @@ class HandlingDataConstructors {
             return `<li><a href="${item.url}" target="_blank"><img class="items" src="${item.preview}" width="150" height="150" title="${item.title}" alt="${item.title}"/></a></li>`;
             // return `<li><a href="${item.url}" target="_blank"><img class="items" src="${this.testUrl}" width="150" height="150" title="${item.title}" alt="${item.title}"/></a></li>`;
         });
-        this.ul.classList = "dataLists"
+        this.ul.classList.add("dataLists")
         this.ul.innerHTML = myTest.join('')
     }
 
@@ -43,7 +50,15 @@ class HandlingDataConstructors {
         this.getDataLists().then(res => {
             /*console.log(res.pagination) // 测试是否有分页数据*/
 
-            if (res.scenes.length !== 0) {
+            if (res.scenes.length === 0) {
+                $("#pagingBox").bs_pagination({
+                    currentPage: 0, // 初始页码
+                    totalPages: 1, // 总页数
+                    rowsPerPage: 0, // 每页行数
+                    maxRowsPerPage: 0, // 每页最大行数
+                    totalRows: 0, // 总数据
+                });
+            }else {
                 $(() => {
                     $("#pagingBox").bs_pagination({
                         currentPage: res.pagination.current_page, // 初始页码
@@ -58,15 +73,6 @@ class HandlingDataConstructors {
                         }
                     });
                 })
-            }else {
-                console.log("没有数据")
-                $("#pagingBox").bs_pagination({
-                    currentPage: 0, // 初始页码
-                    totalPages: 1, // 总页数
-                    rowsPerPage: 0, // 每页行数
-                    maxRowsPerPage: 0, // 每页最大行数
-                    totalRows: 0, // 总数据
-                });
             }
 
         })
@@ -105,8 +111,10 @@ btn.addEventListener('click',function () {
 
     if (search.value === '') {
         test01.search = 'milf'
+        test01.page = 0
     } else {
         test01.search = search.value
+        test01.page = 0
     }
 
     test01.init()
