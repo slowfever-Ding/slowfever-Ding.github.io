@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    let imageBoxElement = document.createElement('div')
+    let nextButton = document.createElement('button')
+    nextButton.innerHTML = 'Next'
+    nextButton.style.cssText = `
+        display: block;
+        width: 95%;
+        height: 30px;
+        line-height: 30px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        margin-top: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        color: #000;
+    `
+    imageBoxElement.style.cssText = `
+        background-color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    `
+    document.body.appendChild(imageBoxElement)
+    function init() {
+        fetch(`https://api.kit9.cn/api/random_lady_pictures/api.php?type=json`)
+            .then(res => {
+                if (res.ok) {
+                    return res.json()
+                } else {
+                    return new Promise.reject({
+                        status: res.status,
+                        statusText: res.statusText
+                    })
+                }
+            })
+            .then(data => {
+                /*console.log(data)*/
+                imageBoxElement.innerHTML = `<img src="${data.data.image_link}" width="255" alt="${data}"/>`
+                imageBoxElement.appendChild(nextButton)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+    init()
+    nextButton.addEventListener('click',function(){
+        init()
+    })
+
+</script>
+
+</body>
+</html>
