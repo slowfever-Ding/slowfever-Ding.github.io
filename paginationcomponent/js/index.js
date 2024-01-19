@@ -13,27 +13,26 @@ class HandlingDataConstructors {
         this.dataArr = ['videos', 'pornstars', 'tags']
         this.page = 0
 
-        /*this.testUrl = 'https://content.adspy.com/5GK9ShZf9HooUNJY.jpg'*/
+        // this.testUrl = 'https://content.adspy.com/5GK9ShZf9HooUNJY.jpg'
 
         // 数据列表
         this.DataLists = []
         this.init()
     }
 
-    init() {
-        this.getDataLists().then(res => {
-            console.log(res) // 打印返回响应结果
+    async init() {
+        let info = await this.getDataLists()
+        console.log(info) // 打印返回响应结果
 
-            if (res.scenes.length === 0) {
-                alert('没有找到数据')
-                this.paging()
-            } else {
-                this.DataLists = res
-                this.rendering()
-                this.paging()
-            }
+        if (info.scenes.length === 0) {
+            alert('没有找到数据')
+            await this.paging()
+        } else {
+            this.DataLists = info
+            this.rendering()
+            await this.paging()
+        }
 
-        })
     }
 
     rendering(){
@@ -46,36 +45,35 @@ class HandlingDataConstructors {
         this.ul.innerHTML = myTest.join('')
     }
 
-    paging(){
-        this.getDataLists().then(res => {
-            /*console.log(res.pagination) // 测试是否有分页数据*/
+    async paging(){
+        let info = await this.getDataLists()
+        /*console.log(info.pagination) // 测试是否有分页数据*!/*/
 
-            if (res.scenes.length === 0) {
+        if (info.scenes.length === 0) {
+            $("#pagingBox").bs_pagination({
+                currentPage: 0, // 初始页码
+                totalPages: 1, // 总页数
+                rowsPerPage: 0, // 每页行数
+                maxRowsPerPage: 0, // 每页最大行数
+                totalRows: 0, // 总数据
+            });
+        }else {
+            $(() => {
                 $("#pagingBox").bs_pagination({
-                    currentPage: 0, // 初始页码
-                    totalPages: 1, // 总页数
-                    rowsPerPage: 0, // 每页行数
-                    maxRowsPerPage: 0, // 每页最大行数
-                    totalRows: 0, // 总数据
+                    currentPage: info.pagination.current_page, // 初始页码
+                    totalPages: info.pagination.last_page, // 总页数
+                    rowsPerPage: info.pagination.per_page, // 每页行数
+                    maxRowsPerPage: 20, // 每页最大行数
+                    totalRows: info.pagination.total, // 总数据
+                    onChangePage: async (page_num, rows_per_page) => { // returns page_num and rows_per_page after a link has clicked
+                        /*console.log(page_num,rows_per_page.currentPage)*/
+                        this.page = rows_per_page.currentPage
+                        await this.init()
+                    }
                 });
-            }else {
-                $(() => {
-                    $("#pagingBox").bs_pagination({
-                        currentPage: res.pagination.current_page, // 初始页码
-                        totalPages: res.pagination.last_page, // 总页数
-                        rowsPerPage: res.pagination.per_page, // 每页行数
-                        maxRowsPerPage: 20, // 每页最大行数
-                        totalRows: res.pagination.total, // 总数据
-                        onChangePage: (page_num,rows_per_page) =>{ // returns page_num and rows_per_page after a link has clicked
-                            /*console.log(page_num,rows_per_page.currentPage)*/
-                            this.page = rows_per_page.currentPage
-                            this.init()
-                        }
-                    });
-                })
-            }
+            })
+        }
 
-        })
     }
 
     async getDataLists() {
@@ -107,7 +105,7 @@ class HandlingDataConstructors {
 
 let test01 = new HandlingDataConstructors("dataLists");
 
-btn.addEventListener('click',function () {
+btn.addEventListener('click', function () {
 
     if (search.value === '') {
         test01.search = 'milf'
