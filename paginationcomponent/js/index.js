@@ -68,6 +68,7 @@ class HandlingDataConstructors {
                     onChangePage: async (page_num, rows_per_page) => { // returns page_num and rows_per_page after a link has clicked
                         /*console.log(page_num,rows_per_page.currentPage)*/
                         this.page = rows_per_page.currentPage
+                        $(".loaderbg").fadeIn();
                         document.body.scrollTop = 0;
                         document.documentElement.scrollTop = 0;
                         await this.init()
@@ -91,6 +92,7 @@ class HandlingDataConstructors {
             });
 
             if (response.ok) {
+                $(".loaderbg").fadeOut();
                 return await response.json()
             } else {
                 return Promise.reject({
@@ -108,7 +110,7 @@ class HandlingDataConstructors {
 let test01 = new HandlingDataConstructors("dataLists");
 
 btn.addEventListener('click', function () {
-
+    $(".loaderbg").fadeIn();
     if (search.value === '') {
         test01.search = 'milf'
         test01.page = 0
@@ -116,6 +118,5 @@ btn.addEventListener('click', function () {
         test01.search = search.value
         test01.page = 0
     }
-
     test01.init()
 })
