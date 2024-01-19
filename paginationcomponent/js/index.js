@@ -22,7 +22,7 @@ class HandlingDataConstructors {
 
     async init() {
         let info = await this.getDataLists()
-        console.log(info) // 打印返回响应结果
+        /*console.log(info) // 打印返回响应结果*/
 
         if (info.scenes.length === 0) {
             alert('没有找到数据')
@@ -68,6 +68,8 @@ class HandlingDataConstructors {
                     onChangePage: async (page_num, rows_per_page) => { // returns page_num and rows_per_page after a link has clicked
                         /*console.log(page_num,rows_per_page.currentPage)*/
                         this.page = rows_per_page.currentPage
+                        document.body.scrollTop = 0;
+                        document.documentElement.scrollTop = 0;
                         await this.init()
                     }
                 });
