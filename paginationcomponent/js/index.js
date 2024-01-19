@@ -13,7 +13,7 @@ class HandlingDataConstructors {
         this.dataArr = ['videos', 'pornstars', 'tags']
         this.page = 0
 
-        // this.testUrl = 'https://content.adspy.com/5GK9ShZf9HooUNJY.jpg'
+        this.testUrl = 'https://content.adspy.com/5GK9ShZf9HooUNJY.jpg'
 
         // 数据列表
         this.DataLists = []
@@ -25,12 +25,14 @@ class HandlingDataConstructors {
         /*console.log(info) // 打印返回响应结果*/
 
         if (info.scenes.length === 0) {
-            alert('没有找到数据')
+            alert('没有找到你想要的内容，换个关键词试试吧。')
             await this.paging()
+            $("#loader_container").fadeOut();
         } else {
             this.DataLists = info
             this.rendering()
             await this.paging()
+            $("#loader_container").fadeOut();
         }
 
     }
@@ -38,8 +40,8 @@ class HandlingDataConstructors {
     rendering(){
         /*console.log(this.DataLists) // 测试是否有数据*/
         let myTest = this.DataLists.scenes.map(item => {
-            return `<li><a href="${item.url}" target="_blank"><img class="items skeleton-img" src="${item.preview}" width="150" height="150" title="${item.title}" alt="${item.title}"/></a></li>`;
-            // return `<li><a href="${item.url}" target="_blank"><img class="items" src="${this.testUrl}" width="150" height="150" title="${item.title}" alt="${item.title}"/></a></li>`;
+            // return `<li><a href="${item.url}" target="_blank"><img class="items skeleton-img" src="${item.preview}" width="150" height="150" title="${item.title}" alt="${item.title}"/></a></li>`;
+            return `<li><a href="${item.url}" target="_blank"><img class="items" src="${this.testUrl}" width="150" height="150" title="${item.title}" alt="${item.title}"/></a></li>`;
         });
         this.ul.classList.add("dataLists")
         this.ul.innerHTML = myTest.join('')
@@ -67,8 +69,8 @@ class HandlingDataConstructors {
                     totalRows: info.pagination.total, // 总数据
                     onChangePage: async (page_num, rows_per_page) => { // returns page_num and rows_per_page after a link has clicked
                         /*console.log(page_num,rows_per_page.currentPage)*/
+                        $("#loader_container").fadeIn();
                         this.page = rows_per_page.currentPage
-                        $(".loaderbg").fadeIn();
                         document.body.scrollTop = 0;
                         document.documentElement.scrollTop = 0;
                         await this.init()
@@ -92,7 +94,6 @@ class HandlingDataConstructors {
             });
 
             if (response.ok) {
-                $(".loaderbg").fadeOut();
                 return await response.json()
             } else {
                 return Promise.reject({
@@ -110,7 +111,7 @@ class HandlingDataConstructors {
 let test01 = new HandlingDataConstructors("dataLists");
 
 btn.addEventListener('click', function () {
-    $(".loaderbg").fadeIn();
+    $("#loader_container").fadeIn();
     if (search.value === '') {
         test01.search = 'milf'
         test01.page = 0
