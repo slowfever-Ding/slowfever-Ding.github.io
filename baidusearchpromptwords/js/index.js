@@ -89,8 +89,6 @@ class BackgroundImageFunction{
         this.arrItem = JSON.stringify(this.arr[0]) // 默认数组下标0第一项 ‘maid’
         // 去除属性名两侧的双引号，将数组下标0第一项 ‘maid’存入localStorage
         localStorage.setItem('tags', this.arrItem.replace(/"/g, ''))
-        this.apiUrl = 'https://api.waifu.im/search' // Replace with the actual API endpoint URL
-        this.queryParams = new URLSearchParams(this.set_included_tag())
         /*console.log(JSON.stringify(arr[0]))*/
         // 调用初始化方法
         let promise = this.init();
@@ -116,6 +114,8 @@ class BackgroundImageFunction{
 
     // 请求获取背景图片
     async getBackgroundImage(){
+        this.apiUrl = 'https://api.waifu.im/search' // Replace with the actual API endpoint URL
+        this.queryParams = new URLSearchParams(this.set_included_tag())
         this.requestUrl = `${this.apiUrl}?${this.queryParams}`
         return await fetch(this.requestUrl)
             .then(response => {
@@ -129,6 +129,7 @@ class BackgroundImageFunction{
                 }
             })
             .then(data => {
+                console.log(data)
                 return data
             })
             .catch(error => {
