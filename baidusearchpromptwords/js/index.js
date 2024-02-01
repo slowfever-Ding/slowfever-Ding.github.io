@@ -42,11 +42,7 @@ function test(obj) {
 
     let mya = list.querySelectorAll('a')
     for (let i = 0; i < mya.length; i++) {
-        mya[i].href = `https://www.baidu.com/s?ie=utf-8&csq=1&pstg=20&mod=2&isbd=1&cqid=ace6d35e00005791&istc=86
-                1&ver=RAoaGdUEPb0aje7bpqHNz39Y20ZzXC7NEYW&chk=65af8e7f&isid=A29474E1B2C34920&wd=${mya[i].innerText}&rsv_sp
-                t=1&rsv_iqid=0xc65ea49500044067&issp=1&f=3&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=1&rsv_d
-                l=ts_0&rsv_sug3=5&rsv_sug1=1&rsv_sug7=100&rsv_sug2=1&rsv_btype=i&prefixsug=df&rsp=0&inputT=1183&rsv_sug4
-                =206180&f4s=1&_ck=139008.0.-1.-1.-1.-1.-1&rsv_isid=38499_40043_39938_39662&isnop=1&rsv_stat=-2&rsv_bp=1`
+        mya[i].href = `https://www.baidu.com/s?wd=${mya[i].innerText}$ie=utf-8&rsv_spt=1`
     }
 
 }
