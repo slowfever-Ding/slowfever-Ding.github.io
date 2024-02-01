@@ -1,7 +1,9 @@
 let mySearch = document.getElementById('mySearch');
 let list = document.getElementById('list');
 let next = document.getElementById('next');
-let milf = document.getElementById('milf');
+let typeSelection = document.getElementById('typeSelection');
+let type_selection_button = document.getElementById('type_selection_button');
+let download_button = document.getElementById('download_button');
 
 // 搜索提示
 mySearch.oninput = function (event) {
@@ -82,10 +84,28 @@ $("#aside-nav").on("mousedown", function (a) {
 
 
 
+// 背景图像功能
 class BackgroundImageFunction{
     constructor() {
         this.bgImg = document.body
-        this.arr = ['maid', 'milf'] // 定义一个数组 来存 tags 参数
+        // 定义一个数组 来存 tags 参数
+        this.arr = [
+            'waifu',
+            'maid',
+            'marin-kitagawa',
+            'mori-calliope',
+            'raiden-shogun',
+            'oppai',
+            'selfies',
+            'uniform',
+            'ero',
+            'ass',
+            'hentai',
+            'milf',
+            'oral',
+            'paizuri',
+            'ecchi'
+        ]
         this.arrItem = JSON.stringify(this.arr[0]) // 默认数组下标0第一项 ‘maid’
         // 去除属性名两侧的双引号，将数组下标0第一项 ‘maid’存入localStorage
         localStorage.setItem('tags', this.arrItem.replace(/"/g, ''))
@@ -129,14 +149,12 @@ class BackgroundImageFunction{
                 }
             })
             .then(data => {
-                console.log(data)
                 return data
             })
             .catch(error => {
                 console.log(error)
             })
     }
-
 
     // 设置背景图片
     async setBackgroundImage(){
@@ -152,15 +170,38 @@ class BackgroundImageFunction{
 
 let background_image_function = new BackgroundImageFunction()
 
+// 渲染类型切换列表
+typeSelection.innerHTML = background_image_function.arr.map((item, index) => {
+    return `<option value="${index}">${item}</option>`
+}).join('')
+
+// 类型切换操作
+type_selection_button.addEventListener('click', async () => {
+    let index = typeSelection.selectedIndex;
+    let recordIndex = Number(typeSelection.options[index].value)
+    console.log(recordIndex)
+    background_image_function.arrItem = JSON.stringify(background_image_function.arr[recordIndex])
+    localStorage.setItem('tags', background_image_function.arrItem.replace(/"/g, '')) // 去除属性名两侧的双引号
+    await background_image_function.init()
+})
+
 // 下一张
 next.onclick = async function () {
     await background_image_function.init()
 }
 
-// milf
-milf.onclick = async function () {
-    // 将数组下标1第二项 ‘milf’存入localStorage - 覆盖默认值
-    background_image_function.arrItem = JSON.stringify(background_image_function.arr[1])
-    localStorage.setItem('tags', background_image_function.arrItem.replace(/"/g, '')) // 去除属性名两侧的双引号
-    await background_image_function.init()
+// 下载当前背景 (显示当前背景图片)
+download_button.onclick = async () => {
+    const BackgroundImageUrl = background_image_function.result[0].url
+    // 创建下载链接并模拟点击
+    function downloadBackground() {
+        const downloadLink = document.createElement('a')
+        downloadLink.target = '_blank'
+        downloadLink.href = BackgroundImageUrl
+        downloadLink.download = 'background_image.png'
+        document.body.appendChild(downloadLink)
+        downloadLink.click()
+        document.body.removeChild(downloadLink)
+    }
+    downloadBackground()
 }
