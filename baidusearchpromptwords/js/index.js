@@ -42,7 +42,7 @@ function test(obj) {
 
     let mya = list.querySelectorAll('a')
     for (let i = 0; i < mya.length; i++) {
-        mya[i].href = `https://www.baidu.com/s?wd=${mya[i].innerText}$ie=utf-8&rsv_spt=1`
+        mya[i].href = `https://www.baidu.com/s?wd=${mya[i].innerText}&ie=utf-8`
     }
 
 }
