@@ -6,25 +6,33 @@ let type_selection_button = document.getElementById('type_selection_button');
 let download_button = document.getElementById('download_button');
 
 // 搜索提示
-mySearch.oninput = function (event) {
-    /*console.log(event.target.value)*/
+mySearch.oninput = (function () {
+    let timing = null
+    return function (event) {
+        if (timing) {
+            clearTimeout(timing)
+        }
+        timing = setTimeout(function () {
+            console.log("发送请求")
+            /*console.log(event.target.value)*/
+            if (event.target.value === "" || event.target.value.replace(/(^\s*)|(\s*$)/g, "") === "") {
+                list.classList.remove('listsBackground')
+                list.innerHTML = ""
+                return
+            }
 
-    if (event.target.value === "" || event.target.value.replace(/(^\s*)|(\s*$)/g, "") === "") {
-        list.classList.remove('listsBackground')
-        list.innerHTML = ""
-        return
-    }
-
-    let scriptElement = document.createElement('script');
-    scriptElement.src = `https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=39998
+            let scriptElement = document.createElement('script');
+            scriptElement.src = `https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=39998
             ,40043,39938,39662&wd=${event.target.value}&req=2&csor=3&pwd=ne&cb=test&_=1706002693521;`
 
-    document.body.appendChild(scriptElement)
-    scriptElement.onload = function () {
-        // 执行完成删除script标签
-        scriptElement.remove()
+            document.body.appendChild(scriptElement)
+            scriptElement.onload = function () {
+                // 执行完成删除script标签
+                scriptElement.remove()
+            }
+        }, 500)
     }
-}
+})()
 
 function test(obj) {
     console.log(obj.g)
