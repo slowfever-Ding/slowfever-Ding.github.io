@@ -116,10 +116,6 @@ recentlyReleasedData.then(response => {
         `
     })
     $('.right_sidebar .items_wrap').html(right_column_data.join(""))
-}).then(() => {
-    $(function() {
-        $("img.lazy").lazyload({effect: "fadeIn",threshold: 200});
-    })
 })
 
 // 搜索事件
@@ -129,4 +125,15 @@ $('#search_form').on('submit', function (event) {
     // 修改action
     $('#search_form').attr('action', `./search.html?search=${$('#search_input').val()}`)
     location.href = `./search.html?search=${$('#search_input').val()}`
+})
+
+// 页面所有图片加载完毕后，执行
+Promise.all([dataList, recentlyReleasedData, allArticlesData]).then(res => {
+    /*console.log(res)*/
+}).then(() => {
+    $(function() {
+        $("img.lazy").lazyload({effect: "fadeIn",threshold: 200});
+    })
+}).catch(err => {
+    console.error("加载数据失败", err)
 })

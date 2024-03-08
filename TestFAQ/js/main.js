@@ -104,6 +104,20 @@ allArticlesData.then(res => {
         `
     })
     $('#allArticles_box .right_col_box .items_wrap').html(data_list.join(""))
+})
+
+// 搜索事件
+$('#search_form').on('submit', function (event) {
+    // 阻止默认提交事件
+    event.preventDefault()
+    // 修改action
+    $('#search_form').attr('action', `./search.html?search=${$('#search_input').val()}`)
+    location.href = `./search.html?search=${$('#search_input').val()}`
+})
+
+// 页面所有图片加载完毕后，执行
+Promise.all([dataList, recentlyReleasedData, allArticlesData]).then(res => {
+    // console.log(res)
 }).then(res => {
     /* 3D效果 */
     $(function () {
@@ -117,13 +131,6 @@ allArticlesData.then(res => {
     $(function() {
         $("img.lazy").lazyload({effect: "fadeIn",threshold: 200})
     })
-})
-
-// 搜索事件
-$('#search_form').on('submit', function (event) {
-    // 阻止默认提交事件
-    event.preventDefault()
-    // 修改action
-    $('#search_form').attr('action', `./search.html?search=${$('#search_input').val()}`)
-    location.href = `./search.html?search=${$('#search_input').val()}`
+}).catch(err => {
+    console.error("加载数据失败", err)
 })

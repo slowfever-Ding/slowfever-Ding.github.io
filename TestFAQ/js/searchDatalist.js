@@ -17,6 +17,7 @@ $('.searchButton').on('click', function () {
     $('.search_box_wrap').fadeToggle(500, 'linear', () => console.log('搜索框显示完成'))
 })
 
+// 搜索内容
 $('.search_content .content_wrap').html('" ' + search_value + ' "')
 
 // 合并所有数据到一个数组中
@@ -92,7 +93,7 @@ Promise.all([dataList, recentlyReleasedData, allArticlesData]).then((data) => {
     let searchResults2 = fuzzySearch(search_value, "data")
     let searchResults3 = fuzzySearch(search_value, "data_list")
 
-    // 合并结果
+    // 搜索结果合并
     let combinedResults = [...searchResults1, ...searchResults2, ...searchResults3]
     /*console.log(combinedResults)*/
 
@@ -124,11 +125,13 @@ Promise.all([dataList, recentlyReleasedData, allArticlesData]).then((data) => {
     }
 
 }).then(res => {
+    // console.log(res)
     $(function() {
         $("img.lazy").lazyload({effect: "fadeIn",threshold: 200});
     })
 }).catch(err => {
-    console.log('处理数据时发生错误:',err)
+    console.error('处理数据时发生错误:',err)
+    $('body').html('<h1 class="fw-bold display-2 position-absolute top-50 start-50 translate-middle">404</h1>')
 })
 
 // 搜索事件
