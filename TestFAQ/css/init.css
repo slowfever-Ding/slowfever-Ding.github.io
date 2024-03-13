@@ -177,6 +177,7 @@ footer, header, hgroup, menu, nav, section {
     width: 100%;
     max-width: 100%;
     display: block;
+    object-fit: cover;
 }
 
 .project__image:after {
