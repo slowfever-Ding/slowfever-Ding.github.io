@@ -65,6 +65,12 @@ window.onload = () => {
         }
     })
 
+    // 监听 error 事件
+    player.on('error', (error) => {
+        // 重新加载视频
+        player.reload()
+    })
+
     /*
             player.on('error', (error) => {
                 console.log(error)
