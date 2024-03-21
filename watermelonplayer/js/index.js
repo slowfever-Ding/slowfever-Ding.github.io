@@ -67,8 +67,10 @@ window.onload = () => {
 
     // 监听 error 事件
     player.on('error', (error) => {
-        // 重新加载视频
-        player.reload()
+        // 重新加载下一个视频
+        player.playNext({
+            "url": getRandomVideos(),
+        })
     })
 
     /*
