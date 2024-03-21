@@ -7,6 +7,9 @@ window.onload = () => {
     function getRandomVideos(){
         // 生成1到61 随机数
         let randomInt = Math.floor(Math.random() * (61 - 1 + 1)) + 1;
+
+        if (randomInt === 8 || randomInt === 10) {randomInt = 60}
+
         /*let url = `https://v.nrzj.vip/video.php?_t=${randomInt}`*/
         let url = `https://api.zxz.ee/api/video/?format=&type=${randomInt}`
         let setVideoURL = (url) => url
