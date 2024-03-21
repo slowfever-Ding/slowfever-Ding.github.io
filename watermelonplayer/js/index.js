@@ -5,9 +5,10 @@ let State = continuous.querySelector('span')
 
 window.onload = () => {
     function getRandomVideos(){
-        let randomInt = Math.floor(Math.random() * (99999 - 1 + 1)) + 1;
+        // 生成1到61 随机数
+        let randomInt = Math.floor(Math.random() * (61 - 1 + 1)) + 1;
         /*let url = `https://v.nrzj.vip/video.php?_t=${randomInt}`*/
-        let url = `https://mnapi.cn/api/xjj.php?type=video`
+        let url = `https://api.zxz.ee/api/video/?format=&type=${randomInt}`
         let setVideoURL = (url) => url
         return setVideoURL(url)
     }
