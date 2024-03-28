@@ -60,7 +60,25 @@
 <body style="display: flex;align-content: center;justify-content: center;">
 
 <div id="box">
-    <video style="mix-blend-mode: screen;display: block;" autoplay controls loop class="bg-video" src="https://mnapi.cn/api/rewu.php?type=video" id="video"></video>
+    <video class="video-source bg-video"
+           id="video"
+           width="100%"
+           controls="controls"
+           style="object-fit:fill;mix-blend-mode: screen;display: block;"
+           webkit-playsinline="true"
+           x-webkit-airplay="true"
+           playsinline="true"
+           x5-video-player-type="h5"
+           x5-video-orientation="h5"
+           x5-video-player-fullscreen="true"
+           preload="auto"
+           autoplay="autoplay"
+           loop="loop"
+    >
+    <source src="https://mnapi.cn/api/rewu.php?type=video" type="video/mp4">
+    <source src="" type="video/ogg">
+    您的浏览器不支持 video 标签。
+    </video>
     <div class="operationButton-Box">
         <button class="operationButton" id="next-But" onclick="location.reload()">Next</button>
     </div>
