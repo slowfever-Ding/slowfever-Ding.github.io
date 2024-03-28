@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>抖音随机视频</title>
     <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
     <style>
         * {
             padding: 0;
@@ -54,6 +56,7 @@
         .operationButton:hover{
             background: #2c70d5;
         }
+        .plyr--video{height: 100%;}
     </style>
 
 </head>
@@ -61,76 +64,42 @@
 
 <div id="box">
     <video class="video-source bg-video"
-           id="video"
+           id="player"
            width="100%"
-           controls="controls"
-           style="mix-blend-mode: screen;display: block;"
-           webkit-playsinline="true"
-           x-webkit-airplay="true"
-           playsinline="true"
-           x5-video-player-type="h5"
-           x5-video-orientation="h5"
-           x5-video-player-fullscreen="true"
-           preload="auto"
-           autoplay="autoplay"
-           loop="loop"
+           controls
+           autoplay
     >
     <source src="https://mnapi.cn/api/rewu.php?type=video" type="video/mp4">
-    <source src="" type="video/ogg">
-    您的浏览器不支持 video 标签。
     </video>
-    <div class="operationButton-Box">
-        <button class="operationButton" id="next-But" onclick="location.reload()">Next</button>
+    <div class="operationButton-Box" style="z-index: 99;">
+        <button class="operationButton" id="next-But">Next</button>
     </div>
 </div>
 
 <script>
+    const player = new Plyr('#player')
     window.onload = function () {
         if (!sessionStorage.getItem('MARK_STATUS')) {
             setTimeout(function () {
                 sessionStorage.setItem('MARK_STATUS','true')
                 alert("点击 'Next' 播放/切换 视频！ ",)
-            },1500)
+            },500)
         }
     }
-</script>
 
-<!--
-<script>
-
-    let myVideo = document.getElementById('video');
-    let nextBut = document.getElementById('next-But');
-    let url = `https://mnapi.cn/api/rewu.php?type=json`
-
-    async function getVideo(url){
-        await fetch(url)
-            .then(response => {
-                // 判断请求是否成功
-                if (response.ok) {
-                    return response.json() // response.json() 解析json数据 || response.text() 解析文本数据
-                } else {
-                    return Promise.reject({
-                        status: response.status,
-                        statusText: response.statusText
-                    })
-                }
-            })
-            .then((data) => {
-                /*console.log(data.data)*/
-                myVideo.src = data.data;
-            }).catch(err => {
-                console.log(err)
-            })
-    }
-
-    getVideo(url)
-
-    nextBut.addEventListener('click', () => {
-        getVideo(url)
+    let next_B = document.getElementById('next-But');
+    next_B.addEventListener('click', function () {
+        player.source = {
+            type: 'video',
+            sources: [
+                {
+                    src: 'https://mnapi.cn/api/rewu.php?type=video',
+                    type: 'video/mp4',
+                },
+            ],
+        };
     })
-
 </script>
--->
 
 </body>
 </html>
