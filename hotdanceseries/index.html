@@ -60,7 +60,7 @@
 <body style="display: flex;align-content: center;justify-content: center;">
 
 <div id="box">
-    <video style="mix-blend-mode: screen;display: block;" autoplay  loop class="bg-video" src="https://mnapi.cn/api/rewu.php?type=video" id="video"></video>
+    <video style="mix-blend-mode: screen;display: block;" autoplay controls loop class="bg-video" src="https://mnapi.cn/api/rewu.php?type=video" id="video"></video>
     <div class="operationButton-Box">
         <button class="operationButton" id="next-But" onclick="location.reload()">Next</button>
     </div>
@@ -72,7 +72,6 @@
             setTimeout(function () {
                 sessionStorage.setItem('MARK_STATUS','true')
                 alert("点击 'Next' 播放/切换 视频！ ",)
-                location.reload()
             },1500)
         }
     }
