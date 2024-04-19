@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>手风琴鉴赏</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        #app{width: 100%;height: 100%;}
+    </style>
+</head>
+<body>
+
+<div id="app">
+
+    <ul class="c-accordion" style="">
+        <li v-for="item in dataItems" id="anchorPoint" class="c-accordion__item" :style="{'--cover': `url(${item.img})`}" style="">
+            <a href="javascript: void(0);" class="c-accordion__action">
+                <div class="c-accordion__content">
+                    <div class="c-accordion__wrap">
+                        <h2 class="c-accordion__title c-accordion__title--hero c-accordion__title--hover-show">{{item.title}}</h2>
+                        <p class="c-accordion__description">{{item.description}}</p>
+                    </div>
+                </div>
+                <div class="c-accordion__aside">
+                    <h2 class="c-accordion__title c-accordion__title--hover-hide">{{item.title}}</h2>
+                </div>
+            </a>
+        </li>
+    </ul>
+
+</div>
+
+<script src="js/data.js"></script>
+<script>
+
+    Vue.createApp({
+
+        data() {
+            return {
+                dataItems: data
+            }
+        },
+
+    }).mount('#app');
+
+</script>
+
+</body>
+</html>
