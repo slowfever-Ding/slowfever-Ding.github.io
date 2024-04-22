@@ -29,4 +29,9 @@ let data = [
         'title': 'TOP-006',
         'description':'北川礼子（日文：北川礼子，1974年7月18日），日本AV女优。所属事务所是ジュエルズプロダクション。'
     },
+    {
+        'img': '../images/zuozuomumingxi.jpg',
+        'title': 'TOP-007',
+        'description':'佐佐木明希（日语：佐々木あき，1979年12月24日—），埼玉县出身的日本AV女优。所属于ALL PROMOTION事务所。'
+    },
 ]
