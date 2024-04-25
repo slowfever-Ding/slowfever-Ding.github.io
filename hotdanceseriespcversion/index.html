@@ -70,7 +70,7 @@
            controls
            autoplay
     >
-    <source src="https://mnapi.cn/api/rewu.php?type=video" type="video/mp4">
+    <source src="" type="video/mp4">
     </video>
     <div class="operationButton-Box" style="z-index: 99;">
         <button class="operationButton" id="next-But">Next</button>
@@ -78,7 +78,7 @@
 </div>
 
 <script>
-    const player = new Plyr('#player')
+    let next_B = document.getElementById('next-But');
     window.onload = function () {
         if (!sessionStorage.getItem('MARK_STATUS')) {
             setTimeout(function () {
@@ -88,18 +88,38 @@
         }
     }
 
-    let next_B = document.getElementById('next-But');
+    const player = new Plyr('#player');
+    player.source = {
+        type: 'video',
+        title: 'Example title 666',
+        sources: [
+            {
+                src: `https://api.zxz.ee/api/video/?format=&type=${randomNumber()}`,
+                type: 'video/webm',
+                size: 1080,
+            },
+        ]
+    };
+
     next_B.addEventListener('click', function () {
         player.source = {
             type: 'video',
             sources: [
                 {
-                    src: 'https://mnapi.cn/api/rewu.php?type=video',
+                    src: `https://api.zxz.ee/api/video/?format=&type=${randomNumber()}`,
                     type: 'video/mp4',
                 },
             ],
         };
     })
+
+    function randomNumber() {
+        // 生成1到61 随机数
+        let randomInt = Math.floor(Math.random() * (61 - 1 + 1)) + 1;
+        // 过滤指定随机数
+        if (randomInt === 8 || randomInt === 10 || randomInt === 36) {randomInt = 60}
+        return randomInt;
+    }
 </script>
 
 </body>
