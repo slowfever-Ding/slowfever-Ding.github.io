@@ -22,9 +22,16 @@
             font-weight: 400;
             font-style: normal;
         }
-        .pointer-events-none{
-            pointer-events: none !important;
-        }
+        /*
+           .pointer-events-none 类用于禁用元素上的指针事件，
+           阻止其响应鼠标事件，如点击或悬停。
+        */
+        .pointer-events-none{pointer-events: none !important;}
+        /*
+           .pointer-events-auto 类用于启用元素上的指针事件，
+           允许其响应鼠标事件，如点击或悬停。
+        */
+        .pointer-events-auto{pointer-events: auto !important;}
     </style>
 
 </head>
@@ -51,10 +58,10 @@ xxxxxxxxxx
                     </div>
                 </div>
                 <div class="position-absolute top-50 start-50 translate-middle pointer-events-none">
-                    <button id="conversionButton" class="text-center d-block btn btn-primary m-auto my-2 px-4">
+                    <button id="conversionButton" class="text-center d-block btn btn-primary m-auto my-2 px-4 pointer-events-auto">
                         转换
                     </button>
-                    <button id="copyButton" class="text-center d-block btn btn-primary m-auto my-2 px-4">
+                    <button id="copyButton" class="text-center d-block btn btn-primary m-auto my-2 px-4 pointer-events-auto">
                         复制
                     </button>
                 </div>
