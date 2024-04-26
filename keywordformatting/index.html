@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>关键字格式化</title>
-
+    <link rel="shortcut icon" href="./favicon.ico" />
     <!-- Bootstrap5 核心 CSS 文件 -->
     <link href="./Bootstrap_css/bootstrap.min.css" rel="stylesheet">
     <!-- JavaScript 文件是可选的。从以下两种建议中选择一个即可！ -->
@@ -29,13 +29,21 @@
 
     <div class="container d-block d-md-flex h-100 align-items-center">
         <div class="w-100">
-            <h1 class="text-center display-3 fw-bold my-3 py-3">关键字格式化</h1>
+            <h1 class="text-center display-3 fw-bold my-3 py-3">
+                <img src="./logo.jpg" class="img-fluid" alt="">
+            </h1>
             <div class="row position-relative">
                 <div class="col-md-6">
                     <div class="form-group">
                         <!--  原始文本域  -->
                         <label class="w-100">
-                            <textarea id="originalTextField" class="form-control my-md-0 my-3" rows="15"></textarea>
+                            <textarea id="originalTextField" class="form-control my-md-0 my-3" rows="15"
+                            placeholder="固定格式：
+xxxxxxxxxx
+xxxxxxxxxx
+xxxxxxxxxx
+......"
+                            ></textarea>
                         </label>
                     </div>
                 </div>
@@ -51,7 +59,7 @@
                     <div class="form-group">
                         <!--  转换后文本域  -->
                         <label class="w-100">
-                            <textarea id="convertTextField" class="form-control my-md-0 my-3" rows="15"></textarea>
+                            <textarea id="convertTextField" class="form-control my-md-0 my-3" rows="15" readonly></textarea>
                         </label>
                     </div>
                 </div>
