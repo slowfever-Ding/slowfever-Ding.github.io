@@ -79,27 +79,26 @@
 
 <script>
     let next_B = document.getElementById('next-But');
+    const player = new Plyr('#player');
+
     window.onload = function () {
         if (!sessionStorage.getItem('MARK_STATUS')) {
             setTimeout(function () {
-                sessionStorage.setItem('MARK_STATUS','true')
-                alert("点击 'Next' 播放/切换 视频！ ",)
+                sessionStorage.setItem('MARK_STATUS','true');
+                alert("点击 'Next' 播放/切换 视频！ ",);
+                player.source = {
+                    type: 'video',
+                    title: '抖音随机美女视频',
+                    sources: [
+                        {
+                            src: `https://api.zxz.ee/api/video/?format=&type=${randomNumber()}`,
+                            type: 'video/mp4',
+                        },
+                    ]
+                };
             },500)
         }
     }
-
-    const player = new Plyr('#player');
-    player.source = {
-        type: 'video',
-        title: 'Example title 666',
-        sources: [
-            {
-                src: `https://api.zxz.ee/api/video/?format=&type=${randomNumber()}`,
-                type: 'video/webm',
-                size: 1080,
-            },
-        ]
-    };
 
     next_B.addEventListener('click', function () {
         player.source = {
