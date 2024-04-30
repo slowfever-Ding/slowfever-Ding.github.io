@@ -101,8 +101,8 @@ xxxxxxxxxx
 
                 // 检查原始文本是否包含逗号
                 if (originalText.includes(',')) {
-                    // 替换原始文本中的逗号为空格
-                    originalText = originalText.replace(/,/g, ' ');
+                    // 过滤原始文本中的逗号
+                    originalText = originalText.replace(/,/g, '');
                 }
 
                 // 调用处理转换文本格式函数
@@ -140,7 +140,10 @@ xxxxxxxxxx
              *  @return {String} 转换后的文本
              */
             function processConvertingTextFormats(text) {
-                return text.split("\n").join(",");
+                // 分割文本成行
+                let lines = text.split("\n");
+                // 过滤空行并转换格式
+                return lines.filter(line => line.trim() !== "").join(",");
             }
         });
     </script>
