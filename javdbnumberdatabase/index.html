@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavDB番号收藏数据库</title>
+
+    <!-- Bootstrap5 核心 CSS 文件 -->
+    <link href="./Bootstrap_css/bootstrap.min.css" rel="stylesheet">
+    <!-- JavaScript 文件是可选的。从以下两种建议中选择一个即可！ -->
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcdn.net/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .option-box .item{
+            display: inline-block;
+            color: #0065ff;
+            padding: 0.7em 1.7em;
+            font-size: 18px;
+            border-radius: 0.5em;
+            background: #e8e8e8;
+            cursor: pointer;
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s;
+            box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        .option-box .item:active {
+            color: #666;
+            box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div id="app">
+        <div class="box w-100 container">
+            <h1 class="w-100 text-center py-2 border-bottom fw-bolder">{{title}}</h1>
+            <div class="option-box my-2 py-2 text-lg-start text-center">
+                <a class="item my-lg-0 my-2" href="javascript: void (0);" @click="queryData('db/JavDB.json');">番号清单</a>
+                <a class="item my-lg-0 my-2" href="javascript: void (0);" @click="queryData('db/series.json');">系列清单</a>
+            </div>
+            <ul v-if="Object.keys(db).length > 0" class="my-2 py-2">
+                <!-- 外部循环遍历 db 中的每个键值对 -->
+                <li v-for="(values, key) in db" :key="key">
+                    <h2 class="fw-bolder fs-3 text-danger my-2 text-center">{{ key }}：</h2>
+                    <ul>
+                        <!-- 内部循环遍历每个键对应的值的列表 -->
+                        <li v-for="(value, index) in values" :key="index">
+                            <!--  key 和 value： {{ value }}  -->
+                            <template v-if="value.fanhao">
+                                <h3>{{value.fanhao}}</h3>
+                                <div class="clearfix">
+                                    <p>{{value.title}}</p>
+                                </div>
+                                <hr>
+                            </template>
+                            <template v-else>
+                                <h3 class="my-2">{{value.content}}</h3>
+                            </template>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bootstrap5 核心 JavaScript 文件 -->
+    <script src="./Bootstrap_js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+        // vue3 初始化
+        let test = Vue.createApp({
+
+            data() {
+                return {
+                    title: 'JavDB番号收藏数据库',
+                    db: {}, // 用于存储数据
+                }
+            },
+            methods:{
+                queryData(db) {
+                    fetch(db)
+                        .then(res => {
+                            if (res.ok) {
+                                return res.json() // res.json() 解析json数据 || res.text() 解析文本数据
+                            } else {
+                                return Promise.reject({
+                                    status: res.status,
+                                    statusText: res.statusText
+                                })
+                            }
+                        })
+                        .then(data => {
+                            this.db = data
+                            console.log('数据加载完成：', this.db)
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
+                },
+            },
+            mounted() {
+
+            }
+
+        }).mount('#app')
+
+    </script>
+
+
+</body>
+</html>

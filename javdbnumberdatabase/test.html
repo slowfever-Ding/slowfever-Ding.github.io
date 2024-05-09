@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavDB</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+
+        }
+        #app{
+            width: 100%;
+        }
+        #app .box{
+            width: 100%;
+        }
+        #app h1{
+            text-align: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #b7b5b5;
+        }
+        .option-box{
+            margin: 15px 0;
+            width: 100%;
+        }
+        .option-box .item{
+            display: inline-block;
+            color: #0065ff;
+            padding: 0.7em 1.7em;
+            font-size: 18px;
+            border-radius: 0.5em;
+            background: #e8e8e8;
+            cursor: pointer;
+            border: 1px solid #e8e8e8;
+            transition: all 0.3s;
+            box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        .option-box .item:active {
+            color: #666;
+            box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
+        }
+
+        .active{
+            color: #fff;
+            background-color: #0dfd6d;
+        }
+    </style>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+    <div class="box">
+        <h1>{{title}}</h1>
+        <div class="option-box">
+            <a class="item" href="javascript: void (0);" @click="queryData('db/JavDB.json');">番号清单</a>
+            <a class="item" href="javascript: void (0);" @click="queryData('db/series.json');">系列清单</a>
+        </div>
+        <ul v-if="Object.keys(db).length > 0">
+            <!-- 外部循环遍历 db 中的每个键值对 -->
+            <li v-for="(values, key) in db" :key="key">
+                <strong>{{ key }}:</strong>
+                <ul>
+                    <!-- 内部循环遍历每个键对应的值的列表 -->
+                    <li v-for="(value, index) in values" :key="index">
+                        {{ value }}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+
+    // vue3 初始化
+    let test = Vue.createApp({
+
+        data() {
+            return {
+                title: 'JavDB番号数据库',
+                db: {}, // 用于存储数据
+            }
+        },
+        methods:{
+            queryData(db) {
+                fetch(db)
+                    .then(res => {
+                        if (res.ok) {
+                            return res.json() // res.json() 解析json数据 || res.text() 解析文本数据
+                        } else {
+                            return Promise.reject({
+                                status: res.status,
+                                statusText: res.statusText
+                            })
+                        }
+                    })
+                    .then(data => {
+                        this.db = data
+                        console.log('数据加载完成：', this.db)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+            },
+        },
+        mounted() {
+
+        }
+
+    }).mount('#app')
+
+</script>
+
+<!--  爬取JavDB系列脚本  -->
+<!--
+<script>
+
+    let lists = document.getElementById('series')
+    console.log(lists)
+
+    let listOf = lists.querySelectorAll('.box strong');
+    let objectsArray = {series: []};
+
+    console.log(listOf.length)
+
+    for (let i = 0; i < listOf.length; i++) {
+        let textContent = listOf[i].textContent;
+        let obj = { content: textContent };
+        objectsArray.series.push(obj);
+    }
+
+    console.log(objectsArray);
+
+</script>
+-->
+
+</body>
+</html>
