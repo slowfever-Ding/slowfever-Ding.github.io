@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>JavDB番号收藏数据库</title>
-
+    <link rel="shortcut icon" href="favicon-32x32.png"/>
     <!-- Bootstrap5 核心 CSS 文件 -->
     <link href="./Bootstrap_css/bootstrap.min.css" rel="stylesheet">
     <!-- JavaScript 文件是可选的。从以下两种建议中选择一个即可！ -->
@@ -17,70 +17,49 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-        ul, li {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-        .option-box .item{
-            display: inline-block;
-            color: #0065ff;
-            padding: 0.7em 1.7em;
-            font-size: 18px;
-            border-radius: 0.5em;
-            background: #e8e8e8;
-            cursor: pointer;
-            border: 1px solid #e8e8e8;
-            transition: all 0.3s;
-            box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
-            text-decoration: none;
-            margin: 0 8px;
-        }
-
-        .option-box .item:active {
-            color: #666;
-            box-shadow: inset 4px 4px 12px #c5c5c5, inset -4px -4px 12px #ffffff;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
 
-    <div id="app">
-        <div class="box w-100 container">
-            <h1 class="w-100 text-center py-2 border-bottom fw-bolder">{{title}}</h1>
-            <div class="option-box my-2 py-2 text-lg-start text-center">
-                <a class="item my-lg-0 my-2" href="javascript: void (0);" @click="queryData('db/JavDB.json');">番号清单</a>
-                <a class="item my-lg-0 my-2" href="javascript: void (0);" @click="queryData('db/series.json');">系列清单</a>
+    <div id="app" class="text-white position-relative z-3 d-flex">
+        <div class="box w-100 h-100 container py-2 d-flex flex-column m-auto">
+            <div class="head-title rounded">
+                <h1 class="w-100 text-center py-2 border-bottom fw-bolder">{{ title }}</h1>
+                <div class="option-box my-2 py-2 text-lg-start text-center">
+                    <!-- 触发queryData方法来加载数据 -->
+                    <a class="item my-lg-0 my-2 btn btn-primary" href="javascript: void (0);" @click="queryData('db/JavDB.json');">番号清单</a>
+                    <a class="item my-lg-0 my-2 btn btn-primary" href="javascript: void (0);" @click="queryData('db/series.json');">系列清单</a>
+                </div>
             </div>
-            <ul v-if="Object.keys(db).length > 0" class="my-2 py-2">
-                <!-- 外部循环遍历 db 中的每个键值对 -->
-                <li v-for="(values, key) in db" :key="key">
-                    <h2 class="fw-bolder fs-3 text-danger my-2 text-center">{{ key }}：</h2>
-                    <ul>
-                        <!-- 内部循环遍历每个键对应的值的列表 -->
-                        <li v-for="(value, index) in values" :key="index">
-                            <!--  key 和 value： {{ value }}  -->
-                            <template v-if="value.fanhao">
-                                <h3>{{value.fanhao}}</h3>
-                                <div class="clearfix">
-                                    <p>{{value.title}}</p>
-                                </div>
-                                <hr>
-                            </template>
-                            <template v-else>
-                                <h3 class="my-2">{{value.content}}</h3>
-                                <hr>
-                            </template>
+            <template v-if="Object.keys(db).length > 0">
+                <div class="dataList-box my-3 py-3 rounded container overflow-y-scroll">
+                    <ul class="p-0 m-0 w-100 h-100">
+                        <!-- 外部循环遍历 db 中的每个键值对 -->
+                        <li v-for="(values, key) in db" :key="key">
+                            <h2 class="fw-bolder fs-3 text-red my-2 text-center">{{ key }}：</h2>
+                            <ul class="p-0 m-0">
+                                <!-- 内部循环遍历每个键对应的值的列表 -->
+                                <li v-for="(value, index) in values" :key="index">
+                                    <!-- 根据 value.fanhao 是否存在来展示不同内容 -->
+                                    <template v-if="value.fanhao">
+                                        <h3>{{ value.fanhao }}</h3>
+                                        <div class="clearfix">
+                                            <p>{{ value.title }}</p>
+                                        </div>
+                                        <hr>
+                                    </template>
+                                    <template v-else>
+                                        <h3 class="my-2">{{ value.content }}</h3>
+                                        <hr>
+                                    </template>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
-                </li>
-            </ul>
+                </div>
+            </template>
+
         </div>
     </div>
 
@@ -88,22 +67,21 @@
     <script src="./Bootstrap_js/bootstrap.bundle.min.js"></script>
 
     <script>
-
         // vue3 初始化
-        let test = Vue.createApp({
-
+        let app = Vue.createApp({
             data() {
                 return {
                     title: 'JavDB番号收藏数据库',
                     db: {}, // 用于存储数据
                 }
             },
-            methods:{
+            methods: {
+                // 请求数据方法
                 queryData(db) {
                     fetch(db)
                         .then(res => {
                             if (res.ok) {
-                                return res.json() // res.json() 解析json数据 || res.text() 解析文本数据
+                                return res.json() // 解析json数据
                             } else {
                                 return Promise.reject({
                                     status: res.status,
@@ -112,22 +90,40 @@
                             }
                         })
                         .then(data => {
+                            // 数据加载完成后执行调整高度和监听窗口大小变化
                             this.db = data
-                            console.log('数据加载完成：', this.db)
+                            this.$nextTick(() => {
+                                this.adjustDataListHeight(); // 初始化时调整高度
+                                window.addEventListener('resize', this.adjustDataListHeight); // 监听窗口大小变化
+                            });
                         })
                         .catch(err => {
                             console.log(err)
                         })
                 },
+                // 调整数据列表高度方法
+                adjustDataListHeight() {
+                    const headTitleHeight = document.querySelector('.head-title').offsetHeight;
+                    const dataListBox = document.querySelector('.dataList-box');
+                    const containerHeight = document.body.offsetHeight; // 获取整个文档的高度
+
+                    if (containerHeight > headTitleHeight) {
+                        dataListBox.style.height = `${(containerHeight - headTitleHeight) - 50}px`; // 调整高度并留出一定空间
+                    } else {
+                        dataListBox.style.height = 'auto'; // 如果容器高度小于head-title高度，则恢复自动高度
+                    }
+                },
             },
             mounted() {
-
-            }
-
-        }).mount('#app')
+                // 可以在这里进行一些初始化操作
+                // this.queryData('db/JavDB.json');
+            },
+            beforeDestroy() {
+                window.removeEventListener('resize', this.adjustDataListHeight); // 在组件销毁前移除事件监听
+            },
+        }).mount('#app');
 
     </script>
-
 
 </body>
 </html>
