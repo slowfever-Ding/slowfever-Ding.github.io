@@ -139,9 +139,11 @@
                 },
             },
             mounted() {
-                this.love_loading = false;
                 // 可以在这里进行一些初始化操作
                 // this.queryData('db/JavDB.json');
+                window.onload = () => {
+                    this.love_loading = false;
+                }
             },
             beforeDestroy() {
                 window.removeEventListener('resize', this.adjustDataListHeight); // 在组件销毁前移除事件监听
