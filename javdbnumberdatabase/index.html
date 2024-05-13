@@ -22,9 +22,26 @@
 </head>
 <body>
 
-    <div id="app" class="text-white position-relative z-3 d-flex">
-        <div class="box w-100 h-100 container py-2 d-flex flex-column m-auto">
-            <div class="head-title rounded">
+    <div id="app" class="text-white position-relative z-3 d-flex w-100 h-100">
+
+        <!--  loading  -->
+        <div id="love_loading" class="position-fixed top-0 start-0 w-100 h-100" v-if="love_loading">
+            <ul class="m-0 p-0">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <!--  loading end  -->
+
+        <div class="box w-100 h-100 container py-2 d-flex flex-column justify-content-around m-auto">
+            <div class="head-title rounded w-100">
                 <h1 class="w-100 text-center py-2 border-bottom fw-bolder">{{ title }}</h1>
                 <div class="option-box my-2 py-2 text-lg-start text-center">
                     <!-- 触发queryData方法来加载数据 -->
@@ -33,7 +50,7 @@
                 </div>
             </div>
             <template v-if="Object.keys(db).length > 0">
-                <div class="dataList-box my-3 py-3 rounded container overflow-y-scroll">
+                <div class="dataList-box w-100 py-3 rounded container overflow-y-scroll">
                     <ul class="p-0 m-0 w-100 h-100">
                         <!-- 外部循环遍历 db 中的每个键值对 -->
                         <li v-for="(values, key) in db" :key="key">
@@ -59,8 +76,8 @@
                     </ul>
                 </div>
             </template>
-
         </div>
+
     </div>
 
     <!-- Bootstrap5 核心 JavaScript 文件 -->
@@ -73,11 +90,13 @@
                 return {
                     title: 'JavDB番号收藏数据库',
                     db: {}, // 用于存储数据
+                    love_loading: true, // 是否显示加载动画
                 }
             },
             methods: {
                 // 请求数据方法
                 queryData(db) {
+                    this.love_loading = true; // 请求数据前显示加载动画
                     fetch(db)
                         .then(res => {
                             if (res.ok) {
@@ -100,6 +119,11 @@
                         .catch(err => {
                             console.log(err)
                         })
+                        .finally(() => {
+                            setTimeout(() => {
+                                this.love_loading = false; // 数据加载完成后隐藏加载动画
+                            }, 1000); // 延迟时间为 1000 毫秒 (1 秒)
+                        });
                 },
                 // 调整数据列表高度方法
                 adjustDataListHeight() {
@@ -115,6 +139,7 @@
                 },
             },
             mounted() {
+                this.love_loading = false;
                 // 可以在这里进行一些初始化操作
                 // this.queryData('db/JavDB.json');
             },
