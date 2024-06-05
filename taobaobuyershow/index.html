@@ -54,6 +54,9 @@
                 imageBoxElement.appendChild(nextButton)
             })
             .catch(err => {
+                document.body.innerHTML = `
+                    <h1>已阵亡</h1>
+                `
                 console.log(err)
             })
     }
