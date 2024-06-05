@@ -114,9 +114,9 @@ xxxxxxxxxx
                 let originalText = $('#originalTextField').val();
 
                 // 检查原始文本是否包含逗号
-                if (originalText.includes(',')) {
+                if (originalText.includes(',') || originalText.includes('，')) {
                     // 过滤原始文本中的逗号
-                    originalText = originalText.replace(/,/g, '');
+                    originalText = originalText.replace(/[,，]/g, '');
                 }
 
                 // 调用处理转换文本格式函数
