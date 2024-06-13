@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         jav清单
 // @namespace    http://tampermonkey.net/
-// @version      1.0.0
+// @version      1.1.0
 // @description  jav清单，替代原网页我的清单，可用作自定义标签
 // @author       lyscop,slowFever
 // @grant        GM_openInTab
@@ -15,7 +15,6 @@
 // @grant        GM_listValues
 // @license      MIT
 // @include      *://*javdb*.com/*
-// @include      *://baidu.com/*
 // @include      *://*javdb*.com/v/*
 // @include      *://javdb*.com/actors/*
 // @include      *://*javdb*.com/users/lists*
