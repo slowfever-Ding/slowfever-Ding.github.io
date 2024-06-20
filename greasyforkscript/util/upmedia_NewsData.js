@@ -3,9 +3,9 @@
 // @namespace   http://tampermonkey.net/
 // @match       *://*upmedia*.mg/*
 // @grant       none
-// @version     1.0.1
+// @version     1.0.2
 // @author      slowFever
-// @description 每分钟自动获取 ‘上报 up media’ 新闻数据，自动刷新页面
+// @description 自动获取 ‘上报 up media’ 新闻数据
 // @icon        https://www.upmedia.mg/images/favicon.png
 // @license     MIT
 // ==/UserScript==
@@ -67,8 +67,6 @@
         // 执行任务
         getNewsData();
         console.log(`任务在 ${now.toLocaleTimeString()} 被执行`);
-        // 刷新页面
-        location.reload();
     }
 
     // 定义一个工具函数来启动定时器
