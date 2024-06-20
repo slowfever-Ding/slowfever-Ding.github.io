@@ -82,6 +82,10 @@
         setTimeout(() => {
             // 每分钟执行一次任务
             intervalId = setInterval(myTask, 60000);
+            // 每分钟刷新一次页面
+            setInterval(() => {
+                location.reload();
+            }, 60000); // 60000 毫秒 = 1 分钟
         }, millisecondsUntilNextMinute);
     }
 
