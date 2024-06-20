@@ -5,7 +5,7 @@
 // @grant       none
 // @version     1.0.1
 // @author      slowFever
-// @description 每分钟自动获取 ‘上报 up media’ 新闻数据
+// @description 每分钟自动获取 ‘上报 up media’ 新闻数据，自动刷新页面
 // @icon        https://www.upmedia.mg/images/favicon.png
 // @license     MIT
 // ==/UserScript==
