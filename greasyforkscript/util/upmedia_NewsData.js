@@ -3,7 +3,7 @@
 // @namespace   http://tampermonkey.net/
 // @match       *://*upmedia*.mg/*
 // @grant       none
-// @version     1.0.0
+// @version     1.0.1
 // @author      slowFever
 // @description 每分钟自动获取 ‘上报 up media’ 新闻数据
 // @icon        https://www.upmedia.mg/images/favicon.png
