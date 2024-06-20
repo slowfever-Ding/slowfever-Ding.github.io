@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         JavDB 个人收藏系列保存到本地
-// @name:zh-CN JavDB 个人收藏系列保存到本地
+// @name:zh-CN   JavDB 个人收藏系列保存到本地
 // @namespace    http://tampermonkey.net/
-// @version      1.0.0
+// @version      1.0.1
 // @description  (JavDB 个人收藏系列保存到本地)
 // @description:zh-CN (JavDB 个人收藏系列保存到本地)
 // @author       slowFever
@@ -10,8 +10,7 @@
 // @icon         https://javdb.com/favicon-32x32.png
 // @grant        GM_setValue
 // @grant        GM_getValue
-// @antifeature payment
-// @license MIT
+// @license      MIT
 // ==/UserScript==
 
 (function () {
