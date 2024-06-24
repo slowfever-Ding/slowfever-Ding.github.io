@@ -3,9 +3,9 @@
 // @namespace   http://tampermonkey.net/
 // @match       *://*upmedia*.mg/*
 // @grant       none
-// @version     1.0.3
+// @version     1.0.4
 // @author      slowFever
-// @description 自动获取 ‘上报 up media’ 新闻数据
+// @description 自动获取 ‘上报 up media’ 新闻数据, 并保存到浏览器本地localStorage中。
 // @icon        https://www.upmedia.mg/images/favicon.png
 // @license     MIT
 // ==/UserScript==
@@ -39,8 +39,9 @@
                 }
             });
 
+            if (newsData.data.length > 0) localStorage.setItem('newsData', JSON.stringify(newsData));
             // 输出结果
-            console.log(newsData);
+            console.log(JSON.parse(localStorage.getItem('newsData')));
         } else {
             console.error('error: No news items found.');
 
@@ -51,7 +52,7 @@
                 errorTime: new Date().toLocaleString()
             };
 
-            console.log(newsData);
+            console.log(JSON.parse(localStorage.getItem('newsData')));
 
             setTimeout(() => {
                 // 清除定时任务
