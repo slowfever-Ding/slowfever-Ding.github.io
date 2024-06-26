@@ -175,8 +175,8 @@ xxxxxxxxxx
             function processConvertingTextFormats(text) {
                 // 分割文本成行
                 let lines = text.split("\n");
-                // 过滤空行并转换格式
-                return lines.filter(line => line.trim() !== "").join(",");
+                // 修剪每一行的空格，过滤空行并转换格式
+                return lines.map(line => line.trim()).filter(line => line !== "").join(",");
             }
         });
     </script>
