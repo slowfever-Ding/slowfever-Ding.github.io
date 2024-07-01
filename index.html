@@ -93,17 +93,24 @@
 
     let currentIndex = Math.floor(Math.random() * videoFiles.length);
 
-    video.addEventListener('ended', () => {
+    function playNextVideo() {
         currentIndex = (currentIndex + 1) % videoFiles.length;
         let nextVideo = videoFiles[currentIndex];
         video.src = `./papers/videos/${nextVideo}.mp4`;
         video.play();
-    })
+    }
 
     video.src = `./papers/videos/${videoFiles[currentIndex]}.mp4`;
     video.autoplay = true;
-    // video.loop = true;
+    video.loop = true;
     video.muted = true;
+
+    document.addEventListener('touchstart', function() {
+        video.muted = false; // Unmute on user interaction
+        video.play();
+    });
+
+    video.addEventListener('ended', playNextVideo);
     video.play();
 </script>
 
