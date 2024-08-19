@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Image Downloader Script
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.0.1
 // @description  下载网页上的图片并保存到本地
 // @author       slowFever
 // @match        *://*/*
-// @grant        none
+// @grant        GM.xmlHttpRequest
 // ==/UserScript==
 
 (function() {
@@ -25,17 +25,23 @@
 
     // 下载单张图片的函数
     function downloadImage(url, name) {
-        fetch(url)
-            .then(response => response.blob())
-            .then(blob => {
+        GM.xmlHttpRequest({
+            method: 'GET',
+            url: url,
+            responseType: 'blob',
+            onload: function(response) {
+                const blob = response.response;
                 const link = document.createElement('a');
                 link.href = URL.createObjectURL(blob);
                 link.download = name;
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-            })
-            .catch(console.error);
+            },
+            onerror: function(error) {
+                console.error('下载图片时出错:', error);
+            }
+        });
     }
 
     // 依次下载图片的函数
