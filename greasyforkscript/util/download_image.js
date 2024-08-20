@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Image Downloader Script
 // @namespace    http://tampermonkey.net/
-// @version      1.0.1
+// @version      1.0.2
 // @description  下载网页上的图片并保存到本地
 // @author       slowFever
 // @match        *://*/*
+// @grant        unsafeWindow
 // @grant        GM.xmlHttpRequest
 // ==/UserScript==
 
@@ -53,8 +54,8 @@
     }
 
     // 将函数暴露到全局，以便在控制台调用
-    window.downloadImagesSequentially = downloadImagesSequentially;
-    window.getDocumentImgNode = getDocumentImgNode;
+    unsafeWindow.downloadImagesSequentially = downloadImagesSequentially;
+    unsafeWindow.getDocumentImgNode = getDocumentImgNode;
 
     // 提示用户可以通过控制台调用函数
     console.log('已加载图像下载器脚本。使用控制台调用带有所需图像节点的方法 downloadImagesSequentially(getDocumentImgNode(img节点))');
