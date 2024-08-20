@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name         下载当前页面图片
 // @namespace    http://tampermonkey.net/
-// @version      1.0.3
+// @version      1.0.4
 // @description  调用 downloadImagesSequentially(getDocumentImgNode(img节点)) 方法，并传入img节点，下载网页上的图片并保存到本地
 // @author       slowFever
 // @match        *://*/*
 // @grant        unsafeWindow
-// @grant        GM.xmlHttpRequest
+// @grant        GM_download
 // @run-at       document-idle
 // ==/UserScript==
 
@@ -28,18 +28,11 @@
 
     // 下载单张图片的函数
     function downloadImage(url, name) {
-        GM.xmlHttpRequest({
-            method: 'GET',
+        GM_download({
             url: url,
-            responseType: 'blob',
-            onload: function(response) {
-                const blob = response.response;
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = name;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+            name: name,
+            onload: function() {
+                console.log(`成功下载：${name}`);
             },
             onerror: function(error) {
                 console.error('下载图片时出错:', error);
