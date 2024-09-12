@@ -114,9 +114,9 @@
 <body style="background: url(https://dailybing.com/api/v1) fixed center;background-size: cover;">
 
 <div id="app">
-    <div class="container bg-vague">
+    <div class="container-fluid bg-vague">
         <h1 class="border-bottom border-3 border-white fs-5 fw-bolder py-3 pb-2 pt-lg-4 pb-lg-3">「全球国家」简易代码/地区名中英文对照表</h1>
-        <div class="table-responsive-xl pb-2">
+        <div class="table-responsive pb-2">
             <table class="table table-striped table-hover text-center text-nowrap caption-top table-bordered">
                 <caption>
                     <div class="wave-group">
@@ -138,6 +138,7 @@
                         <th scope="col">国名/英文</th>
                         <th scope="col">国名/中文</th>
                         <th scope="col">国家/首都</th>
+                        <th scope="col">国家/语言</th>
                         <th scope="col">货币/符号</th>
                         <th scope="col">号码/区号</th>
                         <th scope="col">国家/代码</th>
@@ -147,7 +148,7 @@
             </table>
         </div>
     </div>
-    <div class="container bg-vague">
+    <div class="container-fluid bg-vague">
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
                 <li class="nav-item"><a href="https://github.com/slowfever-Ding" target="_blank" class="nav-link px-2 text-body-secondary">GitHub</a></li>
@@ -244,6 +245,7 @@
                     <td>${highlightText(item.country_name.common, query)}</td>
                     <td>${highlightText(item.country_name.chinese_name?.common || item.country_name.chinese_name, query)}</td>
                     <td>${highlightText(item.capital && item.capital !== 'undefined' ? item.capital : '', query)}</td>
+                    <td>  ${item.languages ? (Object.values(item.languages).length > 3 ? Object.values(item.languages).slice(0, 3).join(', ') + '...' : Object.values(item.languages).join(', ')) : ''}</td>
                     <td>${item.currencies && Object.keys(item.currencies).length > 0 ? `${Object.keys(item.currencies)[0]}/${item.currencies[Object.keys(item.currencies)[0]]?.symbol || ''}` : 'N/A'}</td>
                     <td>${highlightText(item.calling_code && item.calling_code !== 'undefined' ? item.calling_code : '', query)}</td>
                     <td>${highlightText(item.country_code_2, query)}</td>
