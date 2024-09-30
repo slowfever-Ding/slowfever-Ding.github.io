@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name         下载当前页面指定数据 （img, video, audio, ...）
 // @namespace    http://tampermonkey.net/
-// @version      1.0.1
+// @version      1.0.2
 // @description  调用 downloadDataInOrder(obtainDataNodes(document.querySelectorAll('数据节点'), 'file')) 方法，并传入数据节点，根据传入的数据节点，下载网页上的数据并保存到本地
 // @author       slowFever
 // @match        *://*/*
 // @match        *
 // @connect      *
 // @grant        unsafeWindow
-// @grant        GM_download
+// @grant        GM_xmlhttpRequest
 // @run-at       document-idle
 // ==/UserScript==
 
@@ -37,15 +37,27 @@
      * @param url 下载地址
      * @param name 文件名
      */
-    function downloadData(url, name) {
-        GM_download({
+    function downloadFile(url, filename) {
+        GM_xmlhttpRequest({
+            method: "GET",
             url: url,
-            name: name,
-            onload: function() {
-                console.log(`成功下载数据：${name}`);
+            responseType: "blob", // 指定响应类型为 blob
+            onload: function(response) {
+                if (response.status === 200) {
+                    const blob = new Blob([response.response]); // 创建 Blob 对象
+                    const link = document.createElement('a'); // 创建 <a> 标签
+                    link.href = URL.createObjectURL(blob); // 创建 URL 对象
+                    link.download = filename; // 设置下载的文件名
+                    document.body.appendChild(link); // 添加到文档中
+                    link.click(); // 模拟点击下载
+                    document.body.removeChild(link); // 下载完成后移除 <a> 标签
+                    console.log(`成功下载数据：${filename}`);
+                } else {
+                    console.error('下载失败，状态码:', response.status);
+                }
             },
             onerror: function(error) {
-                console.error('下载数据时出错:', error);
+                console.error('下载出错:', error);
             }
         });
     }
@@ -58,7 +70,7 @@
     function downloadDataInOrder(nodesData, prefix = 'file') {
         nodesData.forEach((url, index) => {
             const fileName = `${prefix}-${index + 1}.${url.split('.').pop().split('?')[0]}`;
-            downloadData(url, fileName);
+            downloadFile(url, fileName);
         });
     }
 
