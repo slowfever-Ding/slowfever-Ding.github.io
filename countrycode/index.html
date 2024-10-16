@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>「全球国家」简易代码/地区名中英文对照表</title>
+
+    <!-- Bootstrap5 核心 CSS 文件 -->
+    <link href="./Bootstrap_css/bootstrap.min.css" rel="stylesheet">
+    <!-- JavaScript 文件是可选的。从以下两种建议中选择一个即可！ -->
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcdn.net/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+
+    <style>
+        .container {
+            font-family: "Noto Sans TC", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+        }
+
+        /* From Uiverse.io by AbanoubMagdy1 */
+        .wave-group {
+            position: relative;
+        }
+
+        .wave-group .input {
+            font-size: 16px;
+            padding: 10px 10px 10px 5px;
+            display: block;
+            border: none;
+            border-bottom: 1px solid #515151;
+            background: transparent;
+        }
+
+        .wave-group .input:focus {
+            outline: none;
+        }
+
+        .wave-group .label {
+            color: #6f6f6f;
+            font-size: 18px;
+            font-weight: normal;
+            position: absolute;
+            pointer-events: none;
+            left: 5px;
+            top: 10px;
+            display: flex;
+        }
+
+        .wave-group .label-char {
+            transition: 0.2s ease all;
+            transition-delay: calc(var(--index) * .05s);
+        }
+
+        .wave-group .input:focus ~ label .label-char,
+        .wave-group .input:valid ~ label .label-char {
+            transform: translateY(-20px);
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .wave-group .bar {
+            position: relative;
+            display: block;
+        }
+
+        .wave-group .bar:before,.wave-group .bar:after {
+            content: '';
+            height: 2px;
+            width: 0;
+            bottom: 1px;
+            position: absolute;
+            background: #ffffff;
+            transition: 0.2s ease all;
+            -moz-transition: 0.2s ease all;
+            -webkit-transition: 0.2s ease all;
+        }
+
+        .wave-group .bar:before {
+            left: 50%;
+        }
+
+        .wave-group .bar:after {
+            right: 50%;
+        }
+
+        .wave-group .input:focus ~ .bar:before,
+        .wave-group .input:focus ~ .bar:after {
+            width: 50%;
+        }
+
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+
+        .bg-vague {
+            backdrop-filter: blur(5px) saturate(190%);
+            -webkit-backdrop-filter: blur(5px) saturate(190%);
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 1px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #07e6f6;
+            background-image: -webkit-linear-gradient(45deg,rgb(236,174,6)25%,transparent 25%,transparent 50%,rgb(10,77,246)50%,rgb(241,9,28)75%,transparent 75%,transparent);
+        }
+
+        ::-webkit-scrollbar-track {
+            background: white;
+            border-radius: 20px
+        }
+    </style>
+
+</head>
+<body style="background: url(https://dailybing.com/api/v1) fixed center;background-size: cover;">
+
+<div id="app">
+    <div class="container bg-vague">
+        <h1 class="border-bottom border-3 border-white fs-5 fw-bolder py-3 pb-2 pt-lg-4 pb-lg-3">「全球国家」简易代码/地区名中英文对照表</h1>
+        <div class="table-responsive pb-2 scroll-container">
+            <table class="table table-striped table-hover text-center text-nowrap caption-top table-bordered">
+                <caption>
+                    <div class="wave-group">
+                        <input id="search" required="" type="text" class="input w-100">
+                        <span class="bar w-100"></span>
+                        <label class="label">
+                            <span class="label-char" style="--index: 0">搜</span>
+                            <span class="label-char" style="--index: 1">索</span>
+                            <span class="label-char" style="--index: 2">指</span>
+                            <span class="label-char" style="--index: 3">定</span>
+                            <span class="label-char" style="--index: 4">信</span>
+                            <span class="label-char" style="--index: 5">息</span>
+                        </label>
+                    </div>
+                </caption>
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">国家/旗帜</th>
+                        <th scope="col">国名/英文</th>
+                        <th scope="col">国名/中文</th>
+                        <th scope="col">国家/首都</th>
+                        <th scope="col">国家/语言</th>
+                        <th scope="col">货币/符号</th>
+                        <th scope="col">号码/区号</th>
+                        <th scope="col">国家/代码</th>
+                    </tr>
+                </thead>
+                <tbody id="table-tbody" class="align-middle"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="container bg-vague">
+        <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                <li class="nav-item"><a href="https://github.com/slowfever-Ding" target="_blank" class="nav-link px-2 text-body-secondary">GitHub</a></li>
+                <li class="nav-item"><a href="https://slowfever-ding.github.io/" target="_blank" class="nav-link px-2 text-body-secondary">authorURI</a></li>
+                <li class="nav-item"><a href="https://slowfever-ding.github.io/blog/" target="_blank" class="nav-link px-2 text-body-secondary">authorSBlog</a></li>
+            </ul>
+            <p class="text-center text-body-secondary"> <span >© <script>document.write(new Date().getFullYear());</script> All rights reserved. </span></p>
+        </footer>
+    </div>
+
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="https://slowfever-ding.github.io/favicon.ico" class="rounded me-2" width="25" alt="...">
+                <strong class="me-auto">「全球国家」简易代码</strong>
+                <small>刚刚</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                复制成功！
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let table_tbody = document.getElementById('table-tbody')
+    let search = document.getElementById('search')
+
+    // 全局变量存储获取的国家数据
+    let countryData = []
+
+    // 获取国家数据列表
+    function getCountryDataList() {
+        return fetch('./countries.json')
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    return Promise.reject({
+                        status: response.status,
+                        statusText: response.statusText
+                    })
+                }
+            })
+            .then(data => {
+                countryData = data // 将数据保存到全局变量
+                return data
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
+    // 初始化，获取并渲染国家数据
+    getCountryDataList().then(data => {
+        handleCountryDataList(data)
+    })
+
+    // 监听 input 事件，搜索并过滤数据
+    search.addEventListener('input', function() {
+        const query = search.value.trim().toLowerCase()
+        filterAndRenderCountries(query)
+    });
+
+    // 搜索关键词高亮
+    function highlightText(text, query) {
+        if (!query) return text; // 如果没有查询，则返回原文本
+        // 转义查询中的特殊字符，以防止正则表达式错误
+        const escapedQuery = query.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&');
+        const regex = new RegExp(`(${escapedQuery})`, 'gi'); // 创建正则表达式
+        return text.replace(regex, '<span class="highlight">$1</span>'); // 用 span 标签包裹匹配部分
+    }
+
+    function filterAndRenderCountries(query) {
+        // 使用全局的 countryData 进行过滤
+        const filteredData = countryData.filter(item => {
+            const commonName = item.country_name.common.toLowerCase();
+            const chineseName = (item.country_name.chinese_name?.common || item.country_name.chinese_name || '').toLowerCase();
+            const capital = (item.capital || '').toLowerCase();
+            const callingCode = (item.calling_code || '').toLowerCase();
+            const countryCode2 = (item.country_code_2 || '').toLowerCase();
+
+            return (
+                commonName.includes(query) ||  // 国家名称
+                chineseName.includes(query) || // 中文名称
+                capital.includes(query) ||  // 首都
+                callingCode.includes(query) ||  // 电话区号
+                countryCode2.includes(query)  // 国家代码
+            );
+        });
+
+        if (filteredData.length === 0) {
+            // 如果没有数据，显示“没有找到数据”消息
+            table_tbody.innerHTML = '<tr><td colspan="8"><h2 class="my-5 py-5">找不到数据</h2></td></tr>';
+        } else {
+            // 调用处理和渲染函数
+            handleCountryDataList(filteredData, query);
+        }
+    }
+
+    // 处理和渲染国家数据列表
+    function handleCountryDataList(data, query = '') {
+        const elementNodes = data.map((item, index) => {
+            return `
+                <tr>
+                    <th scope="row"><img src="${item.flags.svg}" width="50" class="img-fluid" alt="${item.country_name.common}"></th>
+                    <td>${highlightText(item.country_name.common, query)}</td>
+                    <td>${highlightText(item.country_name.chinese_name?.common || item.country_name.chinese_name, query)}</td>
+                    <td>${highlightText(item.capital && item.capital !== 'undefined' ? item.capital : '', query)}</td>
+                    <td>
+                        <svg
+                            onclick="copyTooltipContent(event)"
+                            t="1727330908367"
+                            class="icon"
+                            viewBox="0 0 1024 1024"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            data-bs-title="${item.languages && Object.keys(item.languages).length ? (Object.values(item.languages).length > 3 ? Object.values(item.languages).slice(0, 3).join(', ') + '...' : Object.values(item.languages).join(', ')) : 'No languages available'}"
+                            version="1.1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            p-id="4349"
+                            width="30"
+                            height="30"
+                            >
+                            <path d="M512 129.94444444h-0.36736111H511.08159723c-210.68159723 0.55104167-381.13715277 171.37395833-381.13715279 382.05555556s170.45555556 381.50451389 381.13715279 382.05555556h0.91840277c211.04895833 0 382.05555556-171.00659723 382.05555556-382.05555556S723.04895833 129.94444444 512 129.94444444z m0 733.62013889h-0.36736111H511.08159723C317.48229167 863.01354167 160.43541667 705.78298611 160.43541667 512S317.29861111 160.98645833 511.08159723 160.61909723h0.91840277c194.15034723 0 351.56458333 157.41423611 351.56458333 351.56458333 0 193.96666667-157.41423611 351.38090277-351.56458333 351.38090277z" p-id="4350" fill="#1296db"></path><path d="M633.78020833 357.34097223c-34.34826389 8.265625-69.79861111 13.225-106.35104166 14.32708333v125.08645833H651.59722223c-1.10208333-51.61423611-7.53090277-98.45277777-17.8170139-139.41354166zM527.24548611 193.31423611v150.434375c33.98090277-1.10208333 67.04340277-5.51041667 98.82013889-13.225-24.06215277-76.04375-61.53298611-126.00486111-98.82013889-137.209375zM397.01597223 330.33993056c32.14409723 7.71458333 65.39027777 12.30659723 99.5548611 13.40868055V192.946875c-37.28715277 10.83715277-75.30902777 60.79826389-99.5548611 137.39305556zM740.86597223 286.80763889c-41.51180556-42.24652777-94.59548611-73.10486111-154.10798612-87.24826389 27.18472223 28.103125 49.96111111 71.084375 66.30868056 123.61701389 30.67465277-9.36770833 60.06354167-21.490625 87.79930556-36.36875zM679.70034723 496.75451389h153.00590277c-3.30625-71.26805556-29.93993056-136.65833333-72.55381944-188.45625C728.74305556 325.56423611 695.496875 339.70763889 660.78125 350.17743056c11.20451389 44.08333333 17.81701389 93.86076389 18.91909723 146.57708333zM371.484375 496.75451389h125.27013889V371.66805556c-36.91979167-1.10208333-72.7375-6.06145833-107.26944445-14.51076389-10.46979167 40.96076389-16.89861111 87.98298611-18.00069444 139.59722222zM651.59722223 527.24548611H527.24548611v124.90277778c36.55243056 1.10208333 72.18645833 5.87777777 106.53472222 14.32708334 10.28611111-40.77708333 16.71493056-87.79930556 17.8170139-139.22986112zM389.48506944 666.65902777c34.53194444-8.44930556 70.34965277-13.40868056 107.26944445-14.51076388v-124.90277778H371.484375c1.10208333 51.61423611 7.53090277 98.63645833 18.00069444 139.41354166zM496.75451389 830.86944444V680.06770833c-34.16458333 1.10208333-67.59444444 5.69409723-99.73854166 13.40868056 24.24583333 76.59479167 62.26770833 126.73958333 99.73854166 137.39305555zM586.75798611 824.440625c59.5125-14.32708333 112.59618056-45.00173611 154.29166666-87.43194444-27.73576389-14.878125-57.12465277-27.00104167-87.79930554-36.36875-16.34756944 52.71631944-39.30763889 95.51388889-66.49236112 123.80069444zM436.13993056 199.92673611c-58.96145833 14.32708333-111.67777777 45.00173611-153.00590279 87.06458333 27.55208333 14.69444444 56.57361111 26.81736111 86.88090279 36.00138889 16.34756944-52.34895833 39.12395833-94.96284723 66.125-123.06597222zM660.78125 673.82256944c34.89930556 10.46979167 68.14548611 24.61319444 99.55486111 41.87916667 42.61388889-51.79791667 69.24756944-117.18819444 72.55381945-188.45625H679.88402777C678.59826389 579.96180556 671.98576389 629.55555556 660.78125 673.82256944zM527.24548611 680.06770833v150.61805556c37.28715277-11.20451389 74.75798611-61.165625 98.82013889-137.39305556-31.77673611-7.71458333-64.83923611-12.12291667-98.82013889-13.225zM362.48402777 349.99375c-34.53194444-10.46979167-67.59444444-24.42951389-98.63645833-41.69548611-42.61388889 51.79791667-69.24756944 117.18819444-72.55381944 188.45625h152.27118056c0.91840277-52.9 7.71458333-102.67743056 18.91909721-146.76076389zM343.38125 527.24548611H191.11006944c3.30625 71.26805556 29.93993056 136.65833333 72.55381945 188.45625 31.04201389-17.08229167 64.10451389-31.22569444 98.63645834-41.69548611-11.02083333-44.08333333-17.81701389-93.86076389-18.91909723-146.76076389zM282.95034723 737.00868056c41.328125 42.06284723 94.04444444 72.7375 153.18958333 87.06458333-27.00104167-28.103125-49.77743056-70.90069444-66.125-123.24965278-30.30729167 9.36770833-59.5125 21.490625-87.06458333 36.18506945z" p-id="4351" fill="#1296db"></path>
+                        </svg>
+                    </td>
+                    <td>
+                        <svg
+                            onclick="copyTooltipContent(event)"
+                            t="1727333621542"
+                            class="icon"
+                            viewBox="0 0 1024 1024"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="top"
+                            data-bs-title="${item.currencies && Object.keys(item.currencies).length > 0 ? `${Object.keys(item.currencies)[0]}/${item.currencies[Object.keys(item.currencies)[0]]?.symbol || ''}` : 'N/A'}"
+                            version="1.1"
+                            xmlns="http://www.w3.org/2000/svg"
+                            p-id="18312"
+                            width="30"
+                            height="30"
+                            >
+                            <path d="M533.2 464.8c0.5 0 1 0 1.5-0.1 106.6-7 181-51.2 181-107.4 0-12.2-9.9-22.1-22.1-22.1s-22.1 9.9-22.1 22.1c0 26.1-56.1 57.8-139.7 63.3-12.2 0.8-21.4 11.3-20.6 23.5 0.7 11.7 10.4 20.7 22 20.7z" fill="#1296db" p-id="18313"></path>
+                            <path d="M506.5 375.5c114.4 0 207.1-42.7 207.1-95.5s-92.7-95.5-207.1-95.5c-114.4 0-207.1 42.8-207.1 95.5s92.7 95.5 207.1 95.5zM378.6 252.6c32.9-15.2 79.6-23.9 127.9-23.9 48.3 0 95 8.7 127.9 23.9 28.5 13.1 35 25.6 35 27.4 0 2.9-8.6 15.2-35 27.4-32.9 15.2-79.6 23.9-127.9 23.9-48.3 0-95-8.7-127.9-23.9-26.3-12.2-34.9-24.5-34.9-27.4-0.1-1.8 6.4-14.3 34.9-27.4z m315 169c-12.2 0-22.1 9.9-22.1 22.1 0 25.1-53.8 56.4-133.9 62.9-12.2 1-21.2 11.7-20.2 23.8 0.9 11.6 10.6 20.3 22 20.3 0.6 0 1.2 0 1.8-0.1 102.7-8.4 174.5-52.4 174.5-107 0-12.2-9.9-22-22.1-22z m31 389.5c119.2 0 209.2-46.6 209.2-108.4 0-12.2-9.9-22.1-22.1-22.1-12.2 0-22.1 9.9-22.1 22.1 0 26.8-62.7 64.2-164.9 64.2s-164.9-37.4-164.9-64.2c0-12.2-9.9-22.1-22.1-22.1-12.2 0-22.1 9.9-22.1 22.1-0.2 61.8 89.7 108.4 209 108.4z" fill="#1296db" p-id="18314"></path>
+                            <path d="M517.5 625.5c0 52.7 92.7 95.5 207.1 95.5 114.4 0 207.1-42.7 207.1-95.5 0-52.7-92.7-95.5-207.1-95.5-114.4 0-207.1 42.7-207.1 95.5z m369.9 0c0 2.9-8.6 15.2-35 27.4-32.9 15.2-79.6 23.9-127.9 23.9-48.3 0-95-8.7-127.9-23.9-26.3-12.2-35-24.5-35-27.4 0-2.9 8.6-15.2 35-27.4 32.9-15.2 79.6-23.9 127.9-23.9 48.3 0 95 8.7 127.9 23.9 26.4 12.1 35 24.5 35 27.4zM911.6 767c-12.2 0-22.1 9.9-22.1 22.1 0 26.8-62.7 64.1-164.9 64.1s-164.9-37.4-164.9-64.1c0-12.2-9.9-22.1-22.1-22.1-12.2 0-22.1 9.9-22.1 22.1 0 61.8 89.9 108.4 209.2 108.4 119.2 0 209.2-46.6 209.2-108.4-0.2-12.2-10.1-22.1-22.3-22.1zM486.5 526.1c-12.2 0-22.1 9.9-22.1 22.1 0 26.8-62.7 64.2-164.9 64.2s-165-37.4-165-64.2c0-12.2-9.9-22.1-22.1-22.1s-22.1 9.9-22.1 22.1c0 61.8 89.9 108.4 209.2 108.4 119.2 0 209.1-46.6 209.1-108.4 0-12.2-9.9-22.1-22.1-22.1z" fill="#1296db" p-id="18315"></path>
+                            <path d="M299.4 566.4c114.4 0 207.1-42.8 207.1-95.5s-92.7-95.5-207.1-95.5c-114.4 0-207.1 42.8-207.1 95.5s92.8 95.5 207.1 95.5zM171.5 443.6c32.9-15.2 79.6-23.9 127.9-23.9 48.3 0 95 8.7 127.9 23.9 26.3 12.1 35 24.5 35 27.4 0 2.9-8.6 15.2-35 27.4-32.9 15.2-79.6 23.9-127.9 23.9-48.3 0-95-8.7-127.9-23.9-26.4-12.1-35-24.5-35-27.4 0.1-2.9 8.7-15.3 35-27.4z m315 168.9c-12.2 0-22.1 9.9-22.1 22.1 0 26.8-62.7 64.2-164.9 64.2s-165-37.4-165-64.2c0-12.2-9.9-22.1-22.1-22.1s-22.1 9.9-22.1 22.1c0 61.8 89.9 108.4 209.2 108.4 119.2 0 209.1-46.6 209.1-108.4 0-12.2-9.9-22.1-22.1-22.1z" fill="#1296db" p-id="18316"></path>
+                            <path d="M486.5 698.9c-12.2 0-22.1 9.9-22.1 22.1 0 26.8-62.7 64.2-164.9 64.2s-165-37.4-165-64.2c0-12.2-9.9-22.1-22.1-22.1s-22.1 9.9-22.1 22.1c0 61.8 89.9 108.4 209.2 108.4 119.2 0 209.1-46.6 209.1-108.4 0-12.2-9.9-22.1-22.1-22.1z" fill="#1296db" p-id="18317"></path>
+                            <path d="M486.5 785.3c-12.2 0-22.1 9.9-22.1 22.1 0 26.8-62.7 64.1-164.9 64.1s-165-37.4-165-64.1c0-12.2-9.9-22.1-22.1-22.1s-22.1 9.9-22.1 22.1c0 61.8 89.9 108.3 209.2 108.3 119.2 0 209.1-46.6 209.1-108.3 0-12.2-9.9-22.1-22.1-22.1z m358.9-433l35.7-38.8 52.5-4.4-38.8-35.7-4.4-52.5-35.7 38.8-52.5 4.4 38.8 35.7z m0.2 98.8l35.5-23.1-41-10.4-23.1-35.5-10.5 41-35.5 23.1 41 10.5 23.1 35.5z m-96.1-235.8l5.9-23 19.9-12.9-23-5.9-13-19.9-5.8 23-19.9 13 23 5.8zM189.7 341.7l10.5-41.1 35.5-23.1-41-10.4-23.1-35.6-10.5 41.1-35.5 23.1 41 10.5z m51.1-171.8l5.9-23 19.9-12.9-23-5.9-13-19.9-5.8 23-19.9 13 23 5.9z" fill="#1296db" p-id="18318"></path>
+                        </svg>
+                    </td>
+                    <td>${highlightText(item.calling_code && item.calling_code !== 'undefined' ? item.calling_code : '', query)}</td>
+                    <td>${highlightText(item.country_code_2, query)}</td>
+                </tr>
+            `
+        })
+        // 渲染元素节点
+        renderingCountryDataList(elementNodes)
+    }
+
+    // 渲染国家数据列表
+    function renderingCountryDataList(elementNodes) {
+        table_tbody.innerHTML = elementNodes.join('')
+
+        // 初始化 tooltip
+        initTooltips()
+    }
+</script>
+
+    <!-- Bootstrap5 核心 JavaScript 文件 -->
+    <script src="./Bootstrap_js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 初始化 tooltip
+        function initTooltips() {
+            const tooltipList = [...document.querySelectorAll('[data-bs-toggle="tooltip"]')].map(el => new bootstrap.Tooltip(el));
+            console.log(tooltipList)
+        }
+
+        // 复制 data-bs-title 的内容到剪贴板
+        function copyTooltipContent(event) {
+            const element = event.currentTarget; // 获取当前点击的元素
+            const tooltipText = element.getAttribute('data-bs-title'); // 获取 data-bs-title 属性的内容
+
+            if (tooltipText) {
+                // 将内容复制到剪贴板
+                navigator.clipboard.writeText(tooltipText).then(() => {
+                    console.log('Text copied to clipboard:', tooltipText);
+                    showToast()
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            } else {
+                console.warn('No tooltip text found!');
+            }
+        }
+
+        // 获取所有带有 data-bs-title 的元素
+        const tooltipElements = document.querySelectorAll('.tooltip-item');
+
+        // 为每个元素添加点击事件，复制该元素的 data-bs-title
+        tooltipElements.forEach((element) => {
+            element.addEventListener('click', copyTooltipContent); // 事件处理函数不需要传递参数
+        });
+
+        // 显示 Toast 提示
+        function showToast() {
+            const toastEl = document.getElementById('liveToast');
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show(); // 显示 Toast
+        }
+    </script>
+
+    <script>
+        // 滚动条拖动效果
+        const scrollContainer = document.querySelector('.scroll-container');
+
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        scrollContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            scrollContainer.classList.add('active');
+            startX = e.pageX - scrollContainer.offsetLeft;
+            scrollLeft = scrollContainer.scrollLeft;
+        });
+
+        scrollContainer.addEventListener('mouseleave', () => {
+            isDown = false;
+            scrollContainer.classList.remove('active');
+        });
+
+        scrollContainer.addEventListener('mouseup', () => {
+            isDown = false;
+            scrollContainer.classList.remove('active');
+        });
+
+        scrollContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return; // 鼠标未按下则退出
+            e.preventDefault();
+            const x = e.pageX - scrollContainer.offsetLeft;
+            const walk = (x - startX) * 2; // 移动的距离
+            scrollContainer.scrollLeft = scrollLeft - walk;
+        });
+    </script>
+
+</body>
+</html>
