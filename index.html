@@ -1,0 +1,184 @@
+<!-- * @Author: slowFever_Ding * @Date: 2023-10-20 19:56:22 * @LastEditors: slowFever_Ding * @LastEditTime: 2023-10-20 19:57:21 * @Description: desc -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K4BHR8WF');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 新 Bootstrap5 核心 CSS 文件 -->
+    <link href="file/Bootstrap_css/bootstrap.min.css" rel="stylesheet">
+    <title>slowfever-Ding 的 主页</title>
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <!-- JavaScript 文件是可选的。从以下两种建议中选择一个即可！ -->
+    <!-- 选项 1：jQuery 和 Bootstrap 集成包（集成了 Popper） -->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" ></script>-->
+    <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>-->
+    <!-- 选项 2：Popper 和 Bootstrap 的 JS 插件各自独立 --><!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="file/Bootstrap_js/popper.min.js"></script><!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+    <script src="file/Bootstrap_js/bootstrap.bundle.min.js"></script><!-- dist -->
+
+    <style>
+        /* @Author: slowFever_Ding @Date: 2023-10-20 19:56:14 @LastEditors: slowFever_Ding @LastEditTime: 2023-11-10 14:46:53 @Description: desc */  * {margin: 0px;padding: 0px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}  em, i {font-style: normal;}  li {list-style: none;}  img {border: 0;vertical-align: middle;}  h1, h2, h3, h4, h5, h6 {margin: 0;}  /** 重置列表元素 **/  ul, ol {list-style: none;}  /** 重置文本格式元素 **/  a {text-decoration: none;}  body {margin: 0;padding: 0;font-family: "Microsoft YaHei", Times, serif;}  .video-box {position: relative;height: 100vh;background-color: #C1CFF7; /*进行视频裁剪*/overflow: hidden;}  .video-box .video-background {position: absolute;left: 50%;top: 50%; /*保证视频内容始终居中*/-webkit-transform: translate(-50%, -50%);-moz-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);-o-transform: translate(-50%, -50%);transform: translate(-50%, -50%);width: 100%;height: 100%; /*保证视频充满屏幕*/-o-object-fit: cover;object-fit: cover;}  .layer {position: absolute;left: 0;top: 0;width: 100%;height: 100vh;background: rgba(19, 60, 154, .2);}  /*.layer img {*//*  margin-top: 15px;*//*  margin-left: 100px;*//*}*/  .navbarBox {z-index: 99999 !important;background-color: rgba(0, 0, 0, 0.2) !important;}  .slogan {position: absolute;top: 50%;left: 50%;-webkit-transform: translate(-50%, -50%);-moz-transform: translate(-50%, -50%);-ms-transform: translate(-50%, -50%);-o-transform: translate(-50%, -50%);transform: translate(-50%, -50%);color: white;text-align: center;}  .slogan .subtitle {font-weight: 550;font-size: 20px;letter-spacing: 10px;margin: 0 0 16px;}  .slogan .title h1 {font-weight: 550;margin: 0 0 16px;}  .slogan .try-btn {width: 225px;height: auto;backdrop-filter: blur(8px) saturate(180%);-webkit-backdrop-filter: blur(8px) saturate(180%);background-color: rgba(255, 255, 255, 0.5);line-height: 54px;font-size: 20px;margin: 0 auto;color: #3370ff;text-align: center;border-radius: 100px;font-weight: 600;cursor: pointer; /*鼠标手样式*/} .slogan .try-btn:hover { border: 1px solid rgb(255 255 255);} .xyy {width: 100%;position: absolute;bottom: 0;background: transparent;overflow: hidden;}  .xyy_jt {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;margin: 0;padding: 0;color: #1f2329;font-size: 14px;font-variant: tabular-nums;line-height: 1.5;list-style: none;-webkit-font-feature-settings: 'tnum';-moz-font-feature-settings: 'tnum';font-feature-settings: 'tnum';position: relative;padding-left: 2px;}  .xyy_jt .scroll-hint {-webkit-animation: jump 1s infinite;-moz-animation: jump 1s infinite;-o-animation: jump 1s infinite;animation: jump 1s infinite;}  .scroll-hint {padding: 15px 0;width: 205px;border-radius: 16px;margin: 0 auto;line-height: 28px;}  @-webkit-keyframes jump { 0% {-webkit-transform: translateY(0);transform: translateY(0);} 50% {-webkit-transform: translateY(20%);transform: translateY(20%);} 100% {-webkit-transform: translateY(0);transform: translateY(0);} }  .xyy::after {content: '';display: block;position: relative;height: 36px;border-left: 1px dashed white;left: -webkit-calc(50% + 1px);left: -moz-calc(50% + 1px);left: calc(50% + 1px);top: 14px;}  @media screen and (max-width: 768px) {  .scroll-hint {display: none;}  }  /*# sourceMappingURL=data:application/json;base64,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QXJCLDBCQUFxQjtJQUFyQixxQkFBcUI7SUFDckIsU0FBUztBQUNiIiwiZmlsZSI6ImluZGV4LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qXHJcbiAqIEBBdXRob3I6IHNsb3dGZXZlcl9EaW5nXHJcbiAqIEBEYXRlOiAyMDIzLTEwLTIwIDE5OjU2OjE0XHJcbiAqIEBMYXN0RWRpdG9yczogc2xvd0ZldmVyX0RpbmdcclxuICogQExhc3RFZGl0VGltZTogMjAyMy0xMC0yMCAxOTo1NjoxNFxyXG4gKiBARGVzY3JpcHRpb246IGRlc2NcclxuICovXHJcblxyXG4qIHttYXJnaW46IDBweDtwYWRkaW5nOiAwcHg7Ym94LXNpemluZzogYm9yZGVyLWJveDt9XHJcbmVtLCBpIHtmb250LXN0eWxlOiBub3JtYWw7fVxyXG5saSB7bGlzdC1zdHlsZTogbm9uZTt9XHJcbmltZyB7Ym9yZGVyOiAwO3ZlcnRpY2FsLWFsaWduOiBtaWRkbGU7fVxyXG5oMSwgaDIsIGgzLCBoNCwgaDUsIGg2IHttYXJnaW46IDA7fVxyXG4vKiog6YeN572u5YiX6KGo5YWD57SgICoqL1xyXG51bCwgb2wgeyBsaXN0LXN0eWxlOiBub25lOyB9XHJcbi8qKiDph43nva7mlofmnKzmoLzlvI/lhYPntKAgKiovXHJcbmEgeyB0ZXh0LWRlY29yYXRpb246IG5vbmU7IH1cclxuYm9keSB7bWFyZ2luOiAwO3BhZGRpbmc6IDA7Zm9udC1mYW1pbHk6IFwiTWljcm9zb2Z0IFlhSGVpXCIsIFRpbWVzLCBzZXJpZjt9XHJcblxyXG4udmlkZW8tYm94IHtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIGhlaWdodDogMTAwdmg7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjQzFDRkY3O1xyXG4gICAgLyrov5vooYzop4bpopHoo4HliaoqL1xyXG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcclxufVxyXG5cclxuLnZpZGVvLWJveCAudmlkZW8tYmFja2dyb3VuZCB7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBsZWZ0OiA1MCU7XHJcbiAgICB0b3A6IDUwJTtcclxuICAgIC8q5L+d6K+B6KeG6aKR5YaF5a655aeL57uI5bGF5LitKi9cclxuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKC01MCUsIC01MCUpO1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgICAvKuS/neivgeinhumikeWFhea7oeWxj+W5lSovXHJcbiAgICBvYmplY3QtZml0OiBjb3ZlcjtcclxuICAgIG1pbi1oZWlnaHQ6IDgwMHB4O1xyXG59XHJcblxyXG4ubGF5ZXIge1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgbGVmdDogMDtcclxuICAgIHRvcDogMDtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgaGVpZ2h0OiAxMDB2aDtcclxuICAgIGJhY2tncm91bmQ6IHJnYmEoMTksIDYwLCAxNTQsIC4yKTtcclxufVxyXG5cclxuLyoubGF5ZXIgaW1nIHsqL1xyXG4vKiAgbWFyZ2luLXRvcDogMTVweDsqL1xyXG4vKiAgbWFyZ2luLWxlZnQ6IDEwMHB4OyovXHJcbi8qfSovXHJcblxyXG4ubmF2YmFyQm94e1xyXG4gICAgei1pbmRleDogOTk5OTkgIWltcG9ydGFudDtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwwLDAsMC4yKSAhaW1wb3J0YW50O1xyXG59XHJcblxyXG4uc2xvZ2FuIHtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHRvcDogNTAlO1xyXG4gICAgbGVmdDogNTAlO1xyXG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XHJcbiAgICB3aWR0aDogNjg0cHg7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5zbG9nYW4gLnN1YnRpdGxlIHtcclxuICAgIGZvbnQtd2VpZ2h0OiA1NTA7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbiAgICBsZXR0ZXItc3BhY2luZzogMTBweDtcclxuICAgIG1hcmdpbjogMCAwIDE2cHg7XHJcbn1cclxuXHJcbi5zbG9nYW4gLnRpdGxlIGgxe1xyXG4gICAgZm9udC13ZWlnaHQ6IDU1MDtcclxuICAgIG1hcmdpbjogMCAwIDE2cHg7XHJcbn1cclxuXHJcbi5zbG9nYW4gLnRyeS1idG4ge1xyXG4gICAgd2lkdGg6IDIyNXB4O1xyXG4gICAgaGVpZ2h0OiA1NHB4O1xyXG4gICAgbGluZS1oZWlnaHQ6IDU0cHg7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbiAgICBtYXJnaW46IDAgYXV0bztcclxuICAgIGNvbG9yOiAjMzM3MGZmO1xyXG4gICAgYmFja2dyb3VuZDogd2hpdGU7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICBib3JkZXItcmFkaXVzOiAxMDBweDtcclxuICAgIGZvbnQtd2VpZ2h0OiA2MDA7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7IC8q6byg5qCH5omL5qC35byPKi9cclxufVxyXG4ueHl5e1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBib3R0b206IDA7XHJcbiAgICBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDtcclxuICAgIG92ZXJmbG93OiBoaWRkZW47XHJcbn1cclxuLnh5eV9qdHtcclxuICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbiAgICBtYXJnaW46IDA7XHJcbiAgICBwYWRkaW5nOiAwO1xyXG4gICAgY29sb3I6ICMxZjIzMjk7XHJcbiAgICBmb250LXNpemU6IDE0cHg7XHJcbiAgICBmb250LXZhcmlhbnQ6IHRhYnVsYXItbnVtcztcclxuICAgIGxpbmUtaGVpZ2h0OiAxLjU7XHJcbiAgICBsaXN0LXN0eWxlOiBub25lO1xyXG4gICAgLXdlYmtpdC1mb250LWZlYXR1cmUtc2V0dGluZ3M6ICd0bnVtJztcclxuICAgIGZvbnQtZmVhdHVyZS1zZXR0aW5nczogJ3RudW0nO1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgcGFkZGluZy1sZWZ0OiAycHg7XHJcbn1cclxuLnh5eV9qdCBzdmd7XHJcbiAgICBoZWlnaHQ6IDE4cHg7XHJcbiAgICB3aWR0aDogMzBweDtcclxuICAgIGZpbGw6IHdoaXRlO1xyXG4gICAgLXdlYmtpdC1hbmltYXRpb246IGp1bXAgMXMgaW5maW5pdGU7XHJcbiAgICBhbmltYXRpb246IGp1bXAgMXMgaW5maW5pdGU7XHJcbn1cclxuLnNjcm9sbC1oaW50e1xyXG4gICAgd2lkdGg6IDMycHg7XHJcbiAgICBoZWlnaHQ6IDMycHg7XHJcbiAgICBib3JkZXItcmFkaXVzOiAxNnB4O1xyXG4gICAgYm9yZGVyOiAxcHggc29saWQgd2hpdGU7XHJcbiAgICBtYXJnaW46IDAgYXV0bztcclxuICAgIHBhZGRpbmc6IDA7XHJcbiAgICBsaW5lLWhlaWdodDogMjhweDtcclxufVxyXG5ALXdlYmtpdC1rZXlmcmFtZXMganVtcHtcclxuICAgIDAlIHtcclxuICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMCk7XHJcbiAgICB9XHJcbiAgICA1MCUge1xyXG4gICAgICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgyMCUpO1xyXG4gICAgfVxyXG4gICAgMTAwJSB7XHJcbiAgICAgICAgdHJhbnNmb3JtOiB0cmFuc2xhdGVZKDApO1xyXG4gICAgfVxyXG59XHJcbi54eXk6OmFmdGVyIHtcclxuICAgIGNvbnRlbnQ6ICcnO1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBoZWlnaHQ6IDM2cHg7XHJcbiAgICBib3JkZXItbGVmdDogMXB4IGRhc2hlZCB3aGl0ZTtcclxuICAgIGxlZnQ6IGNhbGMoNTAlICsgMXB4KTtcclxuICAgIHRvcDogMTRweDtcclxufSJdfQ== */
+    </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQDTJ92JPX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-KQDTJ92JPX');
+    </script>
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K4BHR8WF"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="video-box">
+    <video id="video" class="video-background" preload="auto" muted autoplay playsinline webkit-playsinline tabindex="-1">
+        <source src="" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="layer">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-light navbarBox" aria-label="Offcanvas navbar large" style="z-index: 1000;background-color: rgba(0,0,0,0.2);">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center m-0" href="#">
+                    <img src="file/image/logo.png" alt="" width="255" height="45" class="d-inline-block align-t ext-top mx-1 img-fluid">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas bg-black offcanvas-start text-white" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasNavbar2Label">
+                            <img src="file/image/logo.png" alt="" width="255" height="45" class="d-inline-block align-t ext-top mx-1 img-fluid">
+                        </h5>
+                        <button type="button" class="btn-close bg-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link active text-dark" aria-current="page" href="#">
+
+                                </a>
+                            </li>
+                            <li class="nav-item flex-wrap d-flex align-items-center">
+                                <a class="nav-link text-dark mx-2 mx-md-2" href="https://github.com/slowfever-Ding/" target="_blank">
+                                    <svg t="1718968460431" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4240" width="25" height="25">
+                                        <path d="M64 512c0 195.2 124.8 361.6 300.8 422.4 22.4 6.4 19.2-9.6 19.2-22.4v-76.8c-134.4 16-140.8-73.6-150.4-89.6-19.2-32-60.8-38.4-48-54.4 32-16 64 3.2 99.2 57.6 25.6 38.4 76.8 32 105.6 25.6 6.4-22.4 19.2-44.8 35.2-60.8-144-22.4-201.6-108.8-201.6-211.2 0-48 16-96 48-131.2-22.4-60.8 0-115.2 3.2-121.6 57.6-6.4 118.4 41.6 124.8 44.8 32-9.6 70.4-12.8 112-12.8 41.6 0 80 6.4 112 12.8 12.8-9.6 67.2-48 121.6-44.8 3.2 6.4 25.6 57.6 6.4 118.4 32 38.4 48 83.2 48 131.2 0 102.4-57.6 188.8-201.6 214.4 22.4 22.4 38.4 54.4 38.4 92.8v112c0 9.6 0 19.2 16 19.2C832 876.8 960 710.4 960 512c0-246.4-201.6-448-448-448S64 265.6 64 512z" fill="#FFF" p-id="4241"></path>
+                                    </svg>
+                                </a>
+                                <a class="nav-link text-dark mx-2 mx-md-2" href="https://tool.gljlw.com/qqq/?qq=2964481261" target="_blank">
+                                    <svg t="1718968546087" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5480" width="25" height="25">
+                                        <path d="M512 1024C229.226667 1024 0 794.773333 0 512 0 229.226667 229.226667 0 512 0 794.773333 0 1024 229.226667 1024 512 1024 794.773333 794.773333 1024 512 1024ZM693.333333 458.666667C689.024 438.634667 682.666667 426.666667 682.666667 426.666667 682.666667 426.666667 682.944 397.333333 650.666667 330.666667 618.389333 264 522.666667 256 522.666667 256L512 256C512 256 416.277333 264 384 330.666667 351.722667 397.333333 352 426.666667 352 426.666667 352 426.666667 345.642667 438.634667 341.333333 458.666667 337.024 478.698667 341.333333 490.666667 341.333333 490.666667 341.333333 490.666667 286.656 546.421333 288 586.666667 289.344 626.912 299.221333 652.544 320 629.333333 340.778667 606.122667 341.333333 608 341.333333 608 341.333333 608 340.970667 625.333333 352 640 363.029333 654.666667 373.333333 661.333333 373.333333 661.333333 373.333333 661.333333 317.386667 689.034667 330.666667 725.333333 343.946667 761.632 384.874667 768.288 416 768 447.125333 767.712 512 746.666667 512 746.666667L522.666667 746.666667C522.666667 746.666667 587.541333 767.712 618.666667 768 649.792 768.288 690.72 761.632 704 725.333333 717.28 689.034667 661.333333 661.333333 661.333333 661.333333 661.333333 661.333333 671.637333 654.666667 682.666667 640 693.696 625.333333 693.333333 608 693.333333 608 693.333333 608 693.888 606.122667 714.666667 629.333333 735.445333 652.544 745.322667 626.912 746.666667 586.666667 748.010667 546.421333 693.333333 490.666667 693.333333 490.666667 693.333333 490.666667 697.642667 478.698667 693.333333 458.666667Z" fill="#FFF" p-id="5481"></path>
+                                    </svg>
+                                </a>
+                                <a class="nav-link text-dark mx-2 mx-md-2" href="https://z.wiki/u/zV7Yk7" target="_blank">
+                                    <svg t="1718968664986" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6590" width="25" height="25">
+                                        <path d="M579.800805 511.868432c-11.668045 0-23.34121 10.835638-23.34121 24.174642 0 10.837685 11.667022 21.675371 23.34121 21.675371 17.512307 0 30.015832-10.837685 30.015832-21.675371C609.816637 522.705094 597.313112 511.868432 579.800805 511.868432L579.800805 511.868432zM503.098457 399.310086c18.341643 0 30.015832-11.668045 30.015832-29.181376 0-18.342667-11.673165-29.179329-30.015832-29.179329-17.508211 0-34.184015 10.837685-34.184015 29.179329C468.913418 387.643065 485.590245 399.310086 503.098457 399.310086L503.098457 399.310086zM512.269278 0.560058c-282.619393 0-511.724066 229.104674-511.724066 511.724066 0 282.617345 229.104674 511.722019 511.724066 511.722019 282.617345 0 511.722019-229.104674 511.722019-511.722019C1023.992321 229.664732 794.887647 0.560058 512.269278 0.560058L512.269278 0.560058zM415.557399 641.927823c-30.851312 0-53.362162-4.998543-82.542514-13.339005l-84.20733 42.524476 24.182833-71.705853c-59.196184-41.682854-94.216703-94.209536-94.216703-158.408359 0-113.388706 106.719204-200.09838 236.784738-200.09838 115.054546 0 217.605567 68.36803 237.614074 165.085028-8.336366-1.671983-15.842372-2.501319-22.51085-2.501319-113.388706 0-200.92874 85.038714-200.92874 187.589735 0 17.506164 2.501319 33.346488 6.670526 50.024339C429.732907 641.927823 422.226902 641.927823 415.557399 641.927823L415.557399 641.927823zM763.227477 723.633834l16.671708 60.032688-63.363344-35.849855c-24.17669 4.998543-47.52302 12.503525-71.69971 12.503525-111.722867 0-200.09838-76.702348-200.09838-171.747364 0-95.046039 88.376537-171.749411 200.09838-171.749411 105.882701 0 200.92874 76.703372 200.92874 171.749411C845.764871 641.927823 809.915017 689.450843 763.227477 723.633834L763.227477 723.633834zM338.018548 340.949381c-17.508211 0-35.849855 10.837685-35.849855 29.179329 0 17.513331 18.341643 29.186496 35.849855 29.186496 16.676827 0 30.015832-11.673165 30.015832-29.186496C368.03438 351.787067 354.695375 340.949381 338.018548 340.949381L338.018548 340.949381zM710.701818 511.868432c-12.508644 0-23.34633 10.835638-23.34633 24.174642 0 10.837685 10.837685 21.675371 23.34633 21.675371 16.671708 0 29.179329-10.837685 29.179329-21.675371C739.881147 522.705094 727.373526 511.868432 710.701818 511.868432L710.701818 511.868432zM710.701818 511.868432" fill="#FFF" p-id="6591"></path>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="slogan w-100">
+            <p class="subtitle fs-6 mx-auto w-100 text-center overflow-hidden container" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">天生我材必有用，千金散尽还复来。</p>
+            <div class="title"><h1 class="display-4">SlowFever</h1></div>
+            <div class="try-btn mt-4" onclick="postNow()">联系作者</div>
+        </div>
+    </div>
+    <div class="w-100 xyy">
+        <div class="xyy_jt">
+            <div class="scroll-hint">
+                <iframe class="w-100" scrolling="no" height="25" frameborder="0" allowtransparency="true" src="https://i.tianqi.com?c=code&id=26&icon=1&py=yueluqu&site=15"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<script> function postNow() {location.href = 'https://github.com/slowfever-Ding/';}</script>
+
+<script>
+    let video = document.getElementById('video');
+    let videoSource = video.querySelector('source');
+
+    let videoFiles = ['video_10_2024-06-17T06-53-31-830Z', 'video_10_2024-06-28T05-45-47-699Z_453mf9', 'video_10_2024-08-22T06-42-28-115Z_oc5gn6', 'video_11_2024-06-28T05-45-54-816Z_6w4slm', 'video_12_2024-06-28T05-46-15-189Z_3iu09o', 'video_14_2024-06-28T05-46-23-871Z_ztuc711', 'video_14_2024-08-22T06-44-03-366Z_a8jfb', 'video_15_2024-06-28T05-46-47-063Z_fr5ffb', 'video_16_2024-06-28T05-46-51-511Z_mcxaa4m', 'video_17_2024-06-28T05-47-10-451Z_vomos6', 'video_18_2024-06-28T05-47-17-998Z_drbllh', 'video_18_2024-08-22T06-44-25-862Z_1xm60l', 'video_19_2024-08-22T06-44-33-072Z_38ttae', 'video_1_2024-06-17T07-01-29-508Z', 'video_1_2024-06-17T07-43-31-160Z_ejfzhe', 'video_21_2024-06-28T05-47-45-630Z_1p4jpu', 'video_23_2024-06-28T05-47-59-592Z_xniig2', 'video_23_2024-08-22T06-45-07-592Z_lqhf58', 'video_24_2024-06-28T05-48-09-121Z_j1yoe9', 'video_24_2024-08-22T06-45-11-540Z_tf2aks', 'video_25_2024-06-28T05-48-18-093Z_n3haz', 'video_26_2024-06-28T05-48-21-643Z_fheumn', 'video_26_2024-08-22T06-45-42-213Z_muv91h', 'video_27_2024-06-28T05-48-31-855Z_a7y6ja', 'video_28_2024-06-28T05-48-39-514Z_vn39ce', 'video_28_2024-08-22T06-45-51-354Z_wu96ka', 'video_29_2024-06-28T05-48-44-063Z_i7piwe', 'video_2_2024-06-17T07-01-38-433Z', 'video_2_2024-06-17T07-43-39-562Z_xqkk7', 'video_2_2024-06-17T08-14-38-588Z_jhpbc4', 'video_2_2024-08-22T06-41-19-623Z_xfu9a', 'video_30_2024-06-28T05-48-48-283Z_m6c1me', 'video_31_2024-06-28T05-48-51-922Z_8ws8rn', 'video_31_2024-08-22T06-46-29-447Z_awunzo', 'video_32_2024-06-28T05-48-58-950Z_i2qg5h', 'video_33_2024-06-28T05-49-04-335Z_3xyvy', 'video_33_2024-08-22T06-47-11-120Z_d2cw06', 'video_34_2024-06-28T05-49-11-029Z_rzquc', 'video_35_2024-06-28T05-49-22-269Z_9l0a9b', 'video_36_2024-06-28T05-49-28-667Z_wowufm', 'video_36_2024-08-22T06-47-25-839Z_gnsy3', 'video_37_2024-06-28T05-49-33-048Z_2laup', 'video_38_2024-06-28T05-49-41-856Z_8f7izn', 'video_38_2024-08-22T06-48-02-436Z_bjpb7', 'video_39_2024-06-28T05-49-48-168Z_2qy4j', 'video_39_2024-08-22T06-48-13-118Z_oec1p', 'video_3_2024-06-17T06-52-38-060Z', 'video_3_2024-06-17T07-01-47-112Z', 'video_3_2024-08-22T06-41-25-979Z_qk0x8d', 'video_40_2024-06-28T05-50-07-014Z_kqx6lo', 'video_40_2024-08-22T06-48-18-021Z_7ahzfe', 'video_41_2024-06-28T05-50-12-666Z_iae0ej', 'video_42_2024-06-28T05-50-18-381Z_nffo8l', 'video_43_2024-06-28T05-50-33-015Z_8jgttc', 'video_43_2024-08-22T06-49-33-511Z_0vp2zv', 'video_44_2024-06-28T05-50-37-880Z_fbu7ob', 'video_45_2024-06-28T05-50-41-612Z_yqklke', 'video_45_2024-08-22T06-49-40-974Z_o9bkta', 'video_46_2024-06-28T05-50-47-167Z_xoeqme', 'video_47_2024-06-28T05-51-05-296Z_03ki0g', 'video_49_2024-06-28T05-51-33-275Z_oqkz5o', 'video_49_2024-08-22T06-50-44-934Z_8qikuo', 'video_4_2024-06-17T06-52-48-917Z', 'video_4_2024-06-17T07-01-57-059Z', 'video_4_2024-06-17T07-43-56-518Z_mmuzia', 'video_4_2024-06-17T08-14-53-640Z_jdafh', 'video_4_2024-06-28T05-44-54-390Z_d0mgd', 'video_50_2024-06-28T05-51-43-362Z_mxhm9', 'video_50_2024-08-22T06-50-56-816Z_4lhaoe', 'video_5_2024-06-17T06-53-02-431Z', 'video_5_2024-06-17T07-44-00-717Z_2czuvh', 'video_5_2024-06-17T08-14-57-791Z_756p7f', 'video_5_2024-06-28T05-44-59-027Z_jlf6ba', 'video_6_2024-06-28T05-45-06-638Z_846mfp', 'video_6_2024-08-22T06-41-48-008Z_y9rlje', 'video_7_2024-06-17T06-53-10-468Z', 'video_7_2024-06-28T05-45-24-584Z_epnn9', 'video_7_2024-08-22T06-42-00-817Z_5evv4s', 'video_8_2024-06-17T06-53-16-693Z', 'video_9_2024-06-17T06-53-28-657Z', 'video_9_2024-06-28T05-45-44-258Z_1zmjl'];
+
+    let currentIndex = Math.floor(Math.random() * videoFiles.length);
+
+    function updateVideoPoster() {
+        video.poster = `https://3650000.xyz/random/?id=${currentIndex}`;
+    }
+
+    function playNextVideo() {
+        currentIndex = (currentIndex + 1) % videoFiles.length;
+        updateVideoPoster();
+        let nextVideo = videoFiles[currentIndex];
+        videoSource.src = `https://slowfever-ding.github.io/file/videos/${nextVideo}.mp4`;
+        video.load();  // 重新加载视频
+        video.play();
+    }
+
+    video.autoplay = true;
+    video.muted = true;
+    updateVideoPoster();
+
+    document.addEventListener('DOMContentLoaded', function() {
+        videoSource.src = `https://slowfever-ding.github.io/file/videos/${videoFiles[currentIndex]}.mp4`;
+        video.load();  // 重新加载视频
+        // 检查视频是否被静音
+        if (video.muted) {
+            // 尝试播放视频
+            video.play().catch(function(error) {
+                console.log('自动播放失败:', error);
+            });
+        } else {
+            // 如果视频未静音，强制将其静音并重试播放
+            video.muted = true;
+            video.play().catch(function(error) {
+                console.log('静音后自动播放失败:', error);
+            });
+        }
+    });
+
+    // 视频播放结束时播放下一个视频
+    video.addEventListener('ended', playNextVideo);
+</script>
+
+<script>
+    fetch(`https://api.nnxv.cn/api/yiyan.php`)
+        .then(res => {
+            if (res.ok) {
+                return res.json()
+            } else {
+                return Promise.reject({
+                    status: res.status,
+                    statusText: res.statusText
+                })
+            }
+        })
+        .then(data => {
+            console.log(data.content)
+            document.querySelector('.subtitle').textContent = data.content;
+        })
+        .catch(err => {
+            console.log(err)
+        })
+</script>
+
+</body>
+</html>
