@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>西瓜视频组件</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="xgplayer/dist/index.min.css">
+    <style>
+        .xgplayer, .xgplayer-dynamic-bg, .xgplayer video {
+            border-radius: 3px !important;
+        }
+
+        .selection-box {
+            width: 100%;
+        }
+
+        /* 统一样式 */
+        select {
+            -webkit-appearance: none;  /* 去掉默认样式 (主要针对 Webkit 内核浏览器，如 Chrome, Safari) */
+            -moz-appearance: none;     /* 去掉默认样式 (针对 Firefox) */
+            appearance: none;          /* 去掉默认样式 (针对现代浏览器) */
+            padding: 10px 20px;        /* 内边距 */
+            font-size: 16px;           /* 字体大小 */
+            line-height: 1.5;          /* 行高 */
+            border: 1px solid #ccc;   /* 边框 */
+            background-color: #fff;    /* 背景色 */
+            width: 100%;               /* 宽度 100% */
+            max-width: 100%;          /* 最大宽度 100% */
+            cursor: pointer;          /* 鼠标指针 */
+            transition: all 0.3s ease; /* 过渡效果 */
+            border-radius: 0 !important;
+        }
+
+        /* 增加下拉箭头的样式 */
+        select::-ms-expand {
+            display: none; /* 禁用 IE 的默认下拉箭头 */
+        }
+
+        /* 设置 focus 样式 */
+        select:focus {
+            border-color: #66afe9;    /* 高亮边框 */
+            outline: none;             /* 去掉默认焦点外框 */
+        }
+
+        /* 设置选中项的背景色 */
+        select option:checked {
+            background-color: #66afe9; /* 选中项的背景色 */
+            color: #fff;               /* 选中项的文字颜色 */
+            border-radius: 0 !important;
+        }
+
+        /* 适配手机端 */
+        @media (max-width: 768px) {
+            select {
+                font-size: 14px;    /* 手机端字体稍微变小 */
+                padding: 8px 15px;  /* 手机端的内边距 */
+                max-width: 100%;    /* 手机端最大宽度为 100% */
+            }
+        }
+
+        /* 当 select 元素在父元素中有 overflow 时，显示下拉按钮 */
+        .select-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        /* 通过伪元素添加自定义箭头 */
+        .select-wrapper::after {
+            content: '▼';  /* 自定义下拉箭头 */
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;  /* 禁止事件穿透 */
+            font-size: 18px;
+            color: #999;
+        }
+
+        /* 在触摸屏设备上，禁用弹出式系统键盘的样式 */
+        select:focus {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="selection-box">
+    <div class="select-wrapper"></div>
+</div>
+
+<div id="box">
+    <div id="mse"></div>
+    <div class="operationButton-Box">
+        <button id="continuous">连续播放：<span>关</span></button>
+        <button id="next">播放下一个</button>
+    </div>
+</div>
+
+<!--
+<link rel="stylesheet" href="https://unpkg.byted-static.com/xgplayer/3.0.10/dist/index.min.css"/>
+<script charset="utf-8" src="https://unpkg.byted-static.com/xgplayer/3.0.10/dist/index.min.js"></script>
+-->
+<script src="xgplayer/dist/index.min.js"></script>
+<script src="js/index.js"></script>
+
+</body>
+</html>
