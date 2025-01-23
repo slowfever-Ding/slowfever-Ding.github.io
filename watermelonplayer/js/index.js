@@ -168,6 +168,24 @@ function renderSelect(urls) {
         localStorage.setItem('selectedUrl', event.target.value);
         // 切换源时自动播放新源的视频
         initializePlayer(event.target.value);
+
+        let tips = document.createElement('div');
+
+        // 直接设置内容和样式，而不操作类名
+        tips.innerHTML = '切换源成功，自动播放下一个视频功能需要点击两次重新开启！';
+        tips.classList.add('tips-box');
+
+        document.body.appendChild(tips);
+
+        // 3秒后移除提示框
+        setTimeout(() => {
+            tips.style.opacity = '0';  // 通过改变透明度来实现渐隐效果
+            setTimeout(() => {
+                tips.remove();  // 彻底从 DOM 中移除元素
+            }, 500); // 等待动画完成后再删除
+        }, 3000);
+
+
     });
 }
 
