@@ -139,6 +139,14 @@ const urls = [
     {
         value: '//api.heylie.cn/api/video?v=xq&',
         label: '美女视频'
+    },
+    {
+        value: '//api.kxzjoker.cn/API/Beautyvideo.php?type=down&',
+        label: '随机美女视频1'
+    },
+    {
+        value: '//av.npcq.cn/pc.php',
+        label: '随机美女视频2'
     }
 ];
 
