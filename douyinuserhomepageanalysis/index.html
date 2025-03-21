@@ -30,7 +30,7 @@
                         <!--  图片  -->
                         <template v-if="item.data.type === '图集'">
                             <!--  暂时使用视频封面，后续使用 swap 插件。 -->
-                            <img :src="item.video_info.pic" alt="">
+                            <img :src="item.video_info.pic" :alt="'图集'+index">
                         </template>
                         <!--  视频  -->
                         <template v-else>
@@ -76,6 +76,7 @@
 
         },
         methods: {
+            // 获取视频数据
             async getVideoData() {
                 try {
                     if (this.isLoading) return; // 避免重复请求
@@ -110,6 +111,7 @@
                 }
             },
 
+            // 初始化 Plyr.js 视频播放器
             initVideoPlayers() {
                 this.$nextTick(() => {
                     if (!this.$refs.videoPlayers) return;
@@ -129,6 +131,7 @@
                 });
             },
 
+            // 初始化 Masonry.js 布局
             initMasonry() {
                 this.$nextTick(() => {
                     if (this.initVideos) {
